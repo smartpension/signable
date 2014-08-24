@@ -59,7 +59,7 @@ module Signable
         end
 
         def client
-          @client ||= Signable::Client.new
+          @client ||= Signable::Query::Client.new
         end
       end
 

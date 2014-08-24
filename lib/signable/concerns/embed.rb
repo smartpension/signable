@@ -9,7 +9,7 @@ module Signable
 
       module ClassMethods
         def embed(name, options = {})
-          embeds << Signable::Embed.new(name, options.merge({ prefix: prefix }))
+          embeds << Signable::Model::Embed.new(name, options.merge({ prefix: prefix }))
         end
 
         def embeds

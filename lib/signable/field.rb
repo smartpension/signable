@@ -1,6 +1,6 @@
 module Signable
   class Field
-    include Signable::Concerns::Common
+    include Signable::Concerns::Model
 
     column :id
     column :merge

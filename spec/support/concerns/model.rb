@@ -1,6 +1,6 @@
 Signable::Embedded = Struct.new(:arg)
 
-shared_examples 'Common' do
+shared_examples 'Model' do
 
   it_behaves_like 'Column'
   it_behaves_like 'Embed'
@@ -13,9 +13,9 @@ shared_examples 'Common' do
     end
 
     it "set object specified by embed" do
-      described_class.embed :embedded
-      object = described_class.new embedded: ['bar']
-      expect(object.embedded.first.arg).to be_eql 'bar'
+      described_class.embed :embeddeds
+      object = described_class.new embeddeds: ['bar']
+      expect(object.embeddeds.first.arg).to be_eql 'bar'
     end
   end
 

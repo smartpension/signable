@@ -13,7 +13,7 @@ module Signable
 
       module ClassMethods
         def column(name, options = {})
-          columns << Signable::Column.new(name, options.merge(prefix: prefix))
+          columns << Signable::Model::Column.new(name, options.merge(prefix: prefix))
         end
 
         def columns

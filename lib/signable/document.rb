@@ -1,6 +1,6 @@
 module Signable
   class Field
-    include Signable::Concerns::Core
+    include Signable::Concerns::Model
 
     column :fingerprint
     column :title

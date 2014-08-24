@@ -1,6 +1,6 @@
 module Signable
   module Concerns
-    module Common
+    module Model
       extend ActiveSupport::Concern
       include Signable::Concerns::Embed
       include Signable::Concerns::Column
