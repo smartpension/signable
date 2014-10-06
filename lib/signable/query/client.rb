@@ -26,7 +26,6 @@ module Signable
 
       def create(entry_point, object)
         response = self.class.post "/#{entry_point}", body: object.form_data
-        puts response
         Response.new response
       end
 
