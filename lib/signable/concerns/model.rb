@@ -26,8 +26,12 @@ module Signable
 
         @attributes.each do |key, value|
           next if key == :id
-          object = self.find_column(key) || self.find_embed(key)
-          hash[object.name_with_prefix] = value
+
+          if (column = self.find_column(key))
+            hash[column.name_with_prefix] = value
+          elsif (embed = self.find_embed(key))
+            hash[embed.name_with_prefix] = value.map(&:form_data).to_json
+          end
         end
 
         hash

@@ -1,5 +1,9 @@
 shared_examples 'Column' do
 
+  before do
+    described_class.instance_variable_set(:@columns, [])
+  end
+
   describe "#required_column" do
     it "return required column only" do
       described_class.column :required, presence: true

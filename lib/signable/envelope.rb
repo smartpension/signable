@@ -1,13 +1,10 @@
 module Signable
   class Envelope < Signable::Base
 
-    column :id, as: :fingerprint
-    column :title
-    column :status
-    column :created
-    column :sent
-    column :signed_pdf
+    column :id
+    column :title, presence: true
     embed :documents
+    embed :parties
 
     def update
       raise "not available"

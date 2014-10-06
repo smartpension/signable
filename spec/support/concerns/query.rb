@@ -1,6 +1,7 @@
 shared_examples 'Query' do
 
   before do
+    described_class.instance_variable_set(:@columns, [])
     described_class.column :id
   end
 

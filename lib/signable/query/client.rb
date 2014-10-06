@@ -20,12 +20,13 @@ module Signable
       end
 
       def update(entry_point, id, object)
-        response = self.class.put "/#{entry_point}/#{id}", query: object.form_data
+        response = self.class.put "/#{entry_point}/#{id}", body: object.form_data
         Response.new response
       end
 
       def create(entry_point, object)
-        response = self.class.post "/#{entry_point}", query: object.form_data
+        response = self.class.post "/#{entry_point}", body: object.form_data
+        puts response
         Response.new response
       end
 

@@ -1,13 +1,9 @@
 module Signable
-  class Field
+  class Document
     include Signable::Concerns::Model
 
-    column :fingerprint
-    column :title
-    column :page_total
-    column :pdf_url
-    column :thumbnails
-    column :pages
+    column :template_fingerprint, presence: true
+    column :title, presence: true
 
   end
 end
