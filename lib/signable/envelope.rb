@@ -1,8 +1,11 @@
 module Signable
   class Envelope < Signable::Base
 
-    column :id
     column :title, presence: true
+    column :fingerprint
+    column :status
+    column :signed_pdf
+    column :signing_embed
     embed :documents
     embed :parties
 
