@@ -36,6 +36,7 @@ require "signable/query/client"
 
 require "signable/contact"
 require "signable/envelope"
+require "signable/template"
 require "signable/party"
 require "signable/field"
 require "signable/document"
