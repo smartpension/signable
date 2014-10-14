@@ -13,8 +13,22 @@ module Signable
       raise "not available"
     end
 
+    def pdf_url
+      first_document.pdf_url
+    end
+
+    def page
+      first_document.page
+    end
+
     def delete
       raise "not available"
+    end
+
+    private
+
+    def first_document
+      documents.first
     end
   end
 end
