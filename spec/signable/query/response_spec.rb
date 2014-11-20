@@ -11,6 +11,11 @@ describe Signable::Query::Response do
       it { should be true }
     end
 
+    context "when code is 202" do
+      let(:http_response) { double 'http_response', code: 202 }
+      it { should be true }
+    end
+
     context "when code is !200" do
       let(:http_response) { double 'http_response', code: 205 }
       it { should be false }
