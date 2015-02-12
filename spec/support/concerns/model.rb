@@ -49,7 +49,7 @@ shared_examples 'Model' do
         described_class.embed :embeddeds
       end
 
-      it { should be_eql({ "base_embeddeds" => "[\"embedded\"]" }) }
+      it { should be_eql({ "base_embeddeds" => ["embedded"] }) }
     end
   end
 

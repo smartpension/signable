@@ -20,18 +20,30 @@ module Signable
       end
 
       def update(entry_point, id, object)
-        response = self.class.put "/#{entry_point}/#{id}", body: object.form_data
+        response = self.class.put "/#{entry_point}/#{id}", body: jsonify(object.form_data)
         Response.new response
       end
 
       def create(entry_point, object)
-        response = self.class.post "/#{entry_point}", body: object.form_data
+        response = self.class.post "/#{entry_point}", body: jsonify(object.form_data)
         Response.new response
       end
 
       def delete(entry_poind, id)
         response = self.class.delete "/#{entry_point}/#{id}"
         Response.new response
+      end
+
+      private
+
+      def jsonify(hash)
+        hash.each do |key, value|
+          if value.is_a? Array
+            hash[key] = value.to_json
+          end
+        end
+
+        hash
       end
 
     end

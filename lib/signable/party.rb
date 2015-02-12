@@ -6,5 +6,6 @@ module Signable
     column :name, presence: true
     column :email, presence: true
 
+    embed :merge_fields
   end
 end

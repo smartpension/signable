@@ -6,6 +6,7 @@ module Signable
     column :title, presence: true
     column :pdf_url
     column :pages
+    embed :merge_fields
 
     def page
       pages.first
