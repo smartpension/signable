@@ -30,7 +30,7 @@ module Signable
           if (column = self.find_column(key))
             hash[column.name_with_prefix] = value
           elsif (embed = self.find_embed(key))
-            hash[embed.name_with_prefix] = value.map(&:form_data).to_json
+            hash[embed.name_with_prefix] = value.map(&:form_data)
           end
         end
 
