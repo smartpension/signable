@@ -52,7 +52,7 @@ Party id can be retrieved from the template
 ### Create an envelope
 
 ```ruby
-envelope = Signable::Envelope.new title: 'title', redirect_url: 'http://www.autoenrolment.co.uk'
+envelope = Signable::Envelope.new title: 'title', redirect_url: 'https://www.autoenrolment.co.uk'
 envelope.documents = documents
 envelope.parties = parties
 
