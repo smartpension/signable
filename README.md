@@ -1,6 +1,6 @@
 # Signable
 
-TODO: Write a gem description
+The signable client provides a simple Ruby interface to the Signable API.
 
 ## Installation
 
@@ -18,7 +18,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+```ruby
+Signable.configure do |config|
+  config.base_url = ENV.fetch('SIGNABLE_BASE_URL')
+  config.api_key  = ENV.fetch('SIGNABLE_API_KEY')
+end
+```
+
+### Retrieve a template
+
+```ruby
+Signable::Template.find 'fingerprint'
+```
+
+### Build a document
+
+```ruby
+Signable::Document.new(template_fingerprint: fingerprint, title: title) 
+```
+
+A document may also contain merge_fields (see signable documentation)
+
+### Build a party
+
+```ruby
+Signable::Party.new(id: id, name: 'name', email: 'email')
+```
+
+Party id can be retrieved from the template
+
+### Create an envelope
+
+```ruby
+envelope = Signable::Envelope.new title: 'title', redirect_url: 'http://www.autoenrolment.co.uk'
+envelope.documents = documents
+envelope.parties = parties
+
+envelope.save
+```
 
 ## Contributing
 
