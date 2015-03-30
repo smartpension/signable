@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Signable::VERSION
   spec.authors       = ["Anthony Laibe"]
   spec.email         = ["anthony@laibe.cc"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{The signable client provides a simple Ruby interface to the Signable API.}
+  spec.homepage      = "https://github.com/smartpension/signable"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
