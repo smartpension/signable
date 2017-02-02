@@ -17,5 +17,9 @@ module Signable
       raise "not available"
     end
 
+    def cancel
+      self.class.client.cancel self.class.entry_point, fingerprint
+    end
+
   end
 end

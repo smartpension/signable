@@ -34,6 +34,11 @@ module Signable
         Response.new response
       end
 
+      def cancel(entry_point, id)
+        response = self.class.put "/#{entry_point}/#{id}/cancel"
+        Response.new response
+      end
+
       private
 
       def jsonify(hash)
