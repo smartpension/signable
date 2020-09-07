@@ -7,6 +7,7 @@ module Signable
     column :email, presence: true
     column :contact_email
     column :signing_url
+    column :message
 
     embed :merge_fields
   end
