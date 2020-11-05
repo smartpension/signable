@@ -17,7 +17,7 @@ shared_examples 'Query' do
       end
     end
 
-    context "#when not persisted" do
+    context "when not persisted" do
       let(:described) { described_class.new }
 
       it "call client create" do
@@ -54,7 +54,7 @@ shared_examples 'Query' do
   end
 
   describe ".all" do
-    it "call client all with default value for offet and limit" do
+    it "call client all with default value for offset and limit" do
       expect(described_class.client).to receive(:all).with(described_class.entry_point, 0, 30).and_return response
       described_class.all
     end

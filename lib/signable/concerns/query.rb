@@ -34,7 +34,7 @@ module Signable
       end
 
       module ClassMethods
-        def all(offset = 0, limit = 30)
+        def all(offset: 0, limit: 30)
           response = client.all(entry_point, offset, limit)
 
           if response.ok?
