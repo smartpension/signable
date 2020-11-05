@@ -55,7 +55,7 @@ shared_examples 'Query' do
 
   describe ".all" do
     it "call client all with default value for offet and limit" do
-      expect(described_class.client).to receive(:all).with(described_class.entry_point, 0, 10).and_return response
+      expect(described_class.client).to receive(:all).with(described_class.entry_point, 0, 30).and_return response
       described_class.all
     end
   end
