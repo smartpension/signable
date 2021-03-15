@@ -16,16 +16,34 @@ shared_examples 'Model' do
   end
 
   describe "#attributes" do
-    it "set attributes specified by column" do
+    it "sets attributes specified by column" do
       described_class.column :foo
       object = described_class.new foo: 'bar'
       expect(object.foo).to be_eql 'bar'
     end
 
-    it "set object specified by embed" do
+    it "responds to attributes specified by column" do
+      described_class.column :foo
+      object = described_class.new foo: 'bar'
+      expect(object.respond_to?(:foo)).to be true
+    end
+
+    it "sets object specified by embed" do
       described_class.embed :embeddeds
       object = described_class.new embeddeds: ['bar']
       expect(object.embeddeds.first.arg).to be_eql 'bar'
+    end
+
+    it "responds to attributes specified by embed" do
+      described_class.column :foo
+      object = described_class.new foo: 'bar'
+      expect(object.respond_to?(:foo)).to be true
+    end
+
+    it "does not respond to missing attributes" do
+      described_class.column :foo
+      object = described_class.new foo: 'bar'
+      expect(object.respond_to?(:bar)).to be false
     end
   end
 

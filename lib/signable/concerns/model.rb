@@ -51,6 +51,12 @@ module Signable
         end
       end
 
+      def respond_to_missing?(method, include_private = false)
+        get_method = method.to_s.gsub('=', '')
+        object = find_column(get_method) || find_embed(get_method)
+        object || super
+      end
+
       def valid?
         required_column.all? do |column|
           @attributes[column.name].present?
