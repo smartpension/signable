@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.1"
   spec.add_development_dependency "rake",    "~> 12.3.3"
   spec.add_development_dependency "rspec",   "~> 3.9"
+  spec.add_development_dependency "vcr",     "~> 6.0"
+  spec.add_development_dependency "webmock", "~> 3.8.1"
 
   spec.add_dependency "activesupport",       "> 4.2"
   spec.add_dependency "httparty",            "~> 0.13"
