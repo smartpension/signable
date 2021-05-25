@@ -17,9 +17,5 @@ module Signable
     def delete
       raise "not available"
     end
-
-    def remind
-      raise "not available"
-    end
   end
 end
