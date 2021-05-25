@@ -36,7 +36,7 @@ Signable::Template.find 'fingerprint'
 ### Build a document
 
 ```ruby
-Signable::Document.new(template_fingerprint: fingerprint, title: title) 
+Signable::Document.new(template_fingerprint: fingerprint, title: title)
 ```
 
 A document may also contain merge_fields (see signable documentation)
@@ -58,6 +58,34 @@ envelope.parties = parties
 
 envelope.save
 ```
+
+## Testing
+
+Test suite is RSpec and uses VCR to test API calls.
+
+The VCR cassettes are included in this repository so you can run the specs without hitting the Signable API like so:
+
+```ruby
+bundle exec rspec
+```
+
+If you need to re-record the interactions between the Ruby code and the Signable API, you can specify an API key for the tests to use like so:
+
+```ruby
+SIGNABLE_API_KEY='valid_signable_api_key' bundle exec rspec
+```
+
+If you have an invalid or missing API, you will see an error like the following:
+
+```ruby
+Authentication failed. Either the API Key or password was blank.
+```
+
+NOTE:
+* The VCR recordings have an expiry time, so you may be forced to re-record them even if you have made no changes
+* The test suite is destructive so please only use a test Signable account. The account requires one Template resource in order for the test suite to run.
+
+To obtain a valid Signable API key, log into your Signable account and navigate to Company Settings → Api & Webhooks and click "Add API Key" to generate a key. We recommend you delete the key when finished with it.
 
 ## Contributing
 

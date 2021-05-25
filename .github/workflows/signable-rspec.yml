@@ -1,0 +1,25 @@
+name: Autorun RSpec Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  run_test_suite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run bundle install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: Run bundle exec rspec
+        env:
+          RAILS_ENV: test
+        run: bundle exec rspec

@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.signable.co.uk/v1/envelopes/invalid/cancel
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:49:08 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 404,
+            "code": 10253,
+            "message": "The envelope does not exist. Have you used the correct envelope fingerprint?"
+        }
+  recorded_at: Tue, 08 Jun 2021 13:49:08 GMT
+recorded_with: VCR 6.0.0

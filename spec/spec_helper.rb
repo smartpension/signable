@@ -1,8 +1,15 @@
 require 'rspec'
 require "signable"
+require "support/vcr"
+require "support/webmock"
+require 'pry'
 
 Dir.glob("#{File.dirname(__FILE__)}/support/**/*.rb").each { |f| require f }
 
-RSpec.configure do |c|
-  c.mock_with :rspec
+RSpec.configure do |config|
+  config.mock_with :rspec
+
+  config.around(:each, :vcr) do |example|
+    VCR.use_cassette(example.metadata[:vcr], re_record_interval: 1.month) { example.call }
+  end
 end

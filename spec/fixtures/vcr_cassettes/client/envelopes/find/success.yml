@@ -1,0 +1,331 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.signable.co.uk/v1/templates?limit=10&offset=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:48:43 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "offset": 0,
+            "limit": 10,
+            "total_templates": "1",
+            "templates": [
+                {
+                    "template_id": "17378786",
+                    "template_fingerprint": "56d7d5bb1d9ab1714f707f10c843fa0f",
+                    "template_title": "Sample_Contract",
+                    "template_page_total": "1",
+                    "template_in_progress": "0",
+                    "template_parties_total": "1",
+                    "template_widget_url": "https://app.signable.co.uk/widget/url/q4QYW9yLCS",
+                    "template_widget_embed": "<script type='text/javascript' src='https://app.signable.co.uk/widget/embed/q4QYW9yLCS'></script>",
+                    "template_pdf_url": "https://docs.signable.co.uk/original/56d7d5bb1d9ab1714f707f10c843fa0f.pdf",
+                    "template_thumbnails": [
+                        "https://docs.signable.co.uk/small/56d7d5bb1d9ab1714f707f10c843fa0f-0.jpg"
+                    ],
+                    "template_pages": [
+                        "https://docs.signable.co.uk/large/56d7d5bb1d9ab1714f707f10c843fa0f-0.jpg"
+                    ],
+                    "template_parties": [
+                        {
+                            "party_id": "6593644",
+                            "party_name": "Signer 1"
+                        }
+                    ],
+                    "template_uploaded": "2021-06-07T17:58:36+0000"
+                }
+            ]
+        }
+  recorded_at: Tue, 08 Jun 2021 13:48:43 GMT
+- request:
+    method: post
+    uri: https://api.signable.co.uk/v1/envelopes
+    body:
+      encoding: UTF-8
+      string: envelope_title=whatever&envelope_documents=%5B%7B%22document_title%22%3A%22title%22%2C%22document_template_fingerprint%22%3A%2256d7d5bb1d9ab1714f707f10c843fa0f%22%7D%5D&envelope_parties=%5B%7B%22party_name%22%3A%22something%22%2C%22party_email%22%3A%22something%40gmail.com%22%2C%22party_id%22%3A%226593644%22%7D%5D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:48:45 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "http": 202,
+            "message": "Your envelope with title whatever will be processed and sent out.",
+            "href": "https://api.signable.co.uk/v1/envelopes/b0bc47a1e5d48c2c4f858dd5d470061a",
+            "envelope_title": "whatever",
+            "envelope_fingerprint": "b0bc47a1e5d48c2c4f858dd5d470061a",
+            "envelope_password_protect": false,
+            "envelope_redirect_url": "",
+            "envelope_queued": "2021-06-08T13:48:43+0000"
+        }
+  recorded_at: Tue, 08 Jun 2021 13:48:45 GMT
+- request:
+    method: get
+    uri: https://api.signable.co.uk/v1/envelopes/b0bc47a1e5d48c2c4f858dd5d470061a
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:48:45 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "envelope_fingerprint": "b0bc47a1e5d48c2c4f858dd5d470061a",
+            "envelope_title": "whatever",
+            "envelope_status": "sent",
+            "envelope_redirect_url": null,
+            "envelope_created": "2021-06-08T13:48:43+0000",
+            "envelope_sent": "2021-06-08T13:48:43+0000",
+            "envelope_processed": null,
+            "envelope_parties": [
+                {
+                    "party_id": "14032398",
+                    "party_title": "something",
+                    "contact_id": "6392140",
+                    "contact_email": "something@gmail.com",
+                    "party_status": "in progress",
+                    "party_signature_type": "remote",
+                    "party_role": "signer"
+                }
+            ],
+            "envelope_documents": [
+                {
+                    "document_fingerprint": "56d7d5bb1d9ab1714f707f10c843fa0f",
+                    "document_title": "Sample_Contract",
+                    "document_page_total": "1",
+                    "document_pdf_url": "https://docs.signable.co.uk/original/56d7d5bb1d9ab1714f707f10c843fa0f.pdf",
+                    "document_thumbnails": [
+                        "https://docs.signable.co.uk/small/56d7d5bb1d9ab1714f707f10c843fa0f-0.jpg"
+                    ],
+                    "document_pages": [
+                        "https://docs.signable.co.uk/large/56d7d5bb1d9ab1714f707f10c843fa0f-0.jpg"
+                    ],
+                    "document_fields": []
+                }
+            ],
+            "envelope_history": [
+                {
+                    "history_detail": "Envelope generated with fingerprint b0bc47a1e5d48c2c4f858dd5d470061a",
+                    "history_ip": "163.116.162.113",
+                    "history_user_agent": "Ruby",
+                    "history_date": "2021-06-08T13:48:43+0000"
+                },
+                {
+                    "history_detail": "Document generated with fingerprint 56d7d5bb1d9ab1714f707f10c843fa0f.",
+                    "history_ip": "163.116.162.113",
+                    "history_user_agent": "Ruby",
+                    "history_date": "2021-06-08T13:48:43+0000"
+                },
+                {
+                    "history_detail": "something has been assigned to this envelope.",
+                    "history_ip": "163.116.162.113",
+                    "history_user_agent": "Ruby",
+                    "history_date": "2021-06-08T13:48:43+0000"
+                },
+                {
+                    "history_detail": "Sent the envelope to something (something@gmail.com) for signing.",
+                    "history_ip": "163.116.162.113",
+                    "history_user_agent": "Ruby",
+                    "history_date": "2021-06-08T13:48:43+0000"
+                }
+            ],
+            "envelope_meta": ""
+        }
+  recorded_at: Tue, 08 Jun 2021 13:48:45 GMT
+- request:
+    method: put
+    uri: https://api.signable.co.uk/v1/envelopes/b0bc47a1e5d48c2c4f858dd5d470061a/cancel
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:48:47 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "The envelope has been cancelled",
+            "envelope_fingerprint": "b0bc47a1e5d48c2c4f858dd5d470061a",
+            "envelope_title": "whatever",
+            "envelope_status": "cancelled",
+            "envelope_processed": "2021-06-08T13:48:45+0000"
+        }
+  recorded_at: Tue, 08 Jun 2021 13:48:46 GMT
+- request:
+    method: delete
+    uri: https://api.signable.co.uk/v1/envelopes/b0bc47a1e5d48c2c4f858dd5d470061a
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Jun 2021 13:48:47 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "The envelope has been deleted",
+            "envelope_fingerprint": "b0bc47a1e5d48c2c4f858dd5d470061a",
+            "envelope_title": "whatever",
+            "envelope_status": "deleted"
+        }
+  recorded_at: Tue, 08 Jun 2021 13:48:47 GMT
+recorded_with: VCR 6.0.0
