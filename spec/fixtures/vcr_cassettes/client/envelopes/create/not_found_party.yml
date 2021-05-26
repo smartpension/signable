@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.signable.co.uk/v1/templates/4be8d05316eceda98378b052f5586b69
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 13:37:47 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "template_id": "17177357",
+            "template_fingerprint": "4be8d05316eceda98378b052f5586b69",
+            "template_title": "Test signable template",
+            "template_page_total": "1",
+            "template_in_progress": "2",
+            "template_parties_total": "1",
+            "template_parties": [
+                {
+                    "party_id": "6519080",
+                    "party_name": "1"
+                }
+            ],
+            "template_widget_url": "https://app.signable.co.uk/widget/url/nbgebLxYzR",
+            "template_widget_embed": "<script type='text/javascript' src='https://app.signable.co.uk/widget/embed/nbgebLxYzR'></script>",
+            "template_pdf_url": "https://docs.signable.co.uk/original/4be8d05316eceda98378b052f5586b69.pdf",
+            "template_thumbnails": [
+                "https://docs.signable.co.uk/small/4be8d05316eceda98378b052f5586b69-0.jpg"
+            ],
+            "template_pages": [
+                "https://docs.signable.co.uk/large/4be8d05316eceda98378b052f5586b69-0.jpg"
+            ],
+            "template_uploaded": "2021-05-26T13:06:56+0000"
+        }
+  recorded_at: Wed, 26 May 2021 13:37:47 GMT
+- request:
+    method: post
+    uri: https://api.signable.co.uk/v1/envelopes
+    body:
+      encoding: UTF-8
+      string: envelope_title=whatever&envelope_documents=%5B%7B%22document_title%22%3A%22title%22%2C%22document_template_fingerprint%22%3A%224be8d05316eceda98378b052f5586b69%22%7D%5D&envelope_parties=%5B%7B%22party_name%22%3A%22something%22%2C%22party_email%22%3A%22something%40gmail.com%22%2C%22party_id%22%3A999999999999%7D%5D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Wed, 26 May 2021 13:37:48 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "http": 400,
+            "code": 10272,
+            "message": "The party_id you have provided isn't a valid party for the template fingerprint you have provided."
+        }
+  recorded_at: Wed, 26 May 2021 13:37:48 GMT
+recorded_with: VCR 6.0.0

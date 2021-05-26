@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.signable.co.uk/v1/envelopes/2a81e63c5b497761c60121f279c904a0/remind
+    uri: https://api.signable.co.uk/v1/envelopes/non_existent_fingerprint/remind
     body:
       encoding: UTF-8
       string: ''
@@ -17,11 +17,11 @@ http_interactions:
       - Bearer <OAUTH_TOKEN>
   response:
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
     headers:
       Date:
-      - Wed, 26 May 2021 07:41:49 GMT
+      - Wed, 26 May 2021 09:55:40 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -42,10 +42,9 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-            "http": 200,
-            "message": "The next signing party for this envelope has been reminded.",
-            "envelope_fingerprint": "2a81e63c5b497761c60121f279c904a0",
-            "envelope_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY"
+            "http": 404,
+            "code": 10253,
+            "message": "The envelope does not exist. Have you used the correct envelope fingerprint?"
         }
-  recorded_at: Wed, 26 May 2021 07:41:49 GMT
+  recorded_at: Wed, 26 May 2021 09:55:39 GMT
 recorded_with: VCR 6.0.0

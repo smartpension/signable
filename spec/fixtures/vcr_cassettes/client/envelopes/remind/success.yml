@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.signable.co.uk/v1/envelopes/83ed33d1844c54a053233d00e6ab6e33/remind
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 10:08:48 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "The next signing party for this envelope has been reminded.",
+            "envelope_fingerprint": "83ed33d1844c54a053233d00e6ab6e33",
+            "envelope_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY"
+        }
+  recorded_at: Wed, 26 May 2021 10:08:47 GMT
+recorded_with: VCR 6.0.0

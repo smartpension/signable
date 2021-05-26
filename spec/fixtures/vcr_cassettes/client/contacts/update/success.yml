@@ -1,0 +1,154 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.signable.co.uk/v1/contacts
+    body:
+      encoding: UTF-8
+      string: contact_name=One&contact_email=one%40gmail.com
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 10:37:12 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "One has been added to your contact list.",
+            "href": "https://api.signable.co.uk/v1/contacts/6319930",
+            "contact_id": "6319930",
+            "contact_name": "One",
+            "contact_email": "one@gmail.com",
+            "contact_created": "2021-05-26T10:37:11+0000"
+        }
+  recorded_at: Wed, 26 May 2021 10:37:12 GMT
+- request:
+    method: put
+    uri: https://api.signable.co.uk/v1/contacts/6319930
+    body:
+      encoding: UTF-8
+      string: contact_name=Two&contact_email=two%40gmail.com
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 10:37:13 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "Two has been updated in your contact list.",
+            "href": "https://api.signable.co.uk/v1/contacts/6319930",
+            "contact_id": 6319930,
+            "contact_name": "Two",
+            "contact_email": "two@gmail.com",
+            "contact_updated": "2021-05-26T10:37:12+0000"
+        }
+  recorded_at: Wed, 26 May 2021 10:37:13 GMT
+- request:
+    method: delete
+    uri: https://api.signable.co.uk/v1/contacts/6319930
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 10:37:14 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "message": "Two has been removed from your contact list.",
+            "contact_id": 6319930,
+            "contact_name": "Two",
+            "contact_email": "two@gmail.com"
+        }
+  recorded_at: Wed, 26 May 2021 10:37:14 GMT
+recorded_with: VCR 6.0.0

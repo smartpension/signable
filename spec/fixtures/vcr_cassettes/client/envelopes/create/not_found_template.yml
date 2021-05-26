@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.signable.co.uk/v1/templates/invalid
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 26 May 2021 13:36:43 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 404,
+            "code": 10153,
+            "message": "The template does not exist. Have you used the correct template fingerprint?"
+        }
+  recorded_at: Wed, 26 May 2021 13:36:43 GMT
+- request:
+    method: post
+    uri: https://api.signable.co.uk/v1/envelopes
+    body:
+      encoding: UTF-8
+      string: envelope_title=whatever&envelope_documents=%5B%7B%22document_title%22%3A%22title%22%2C%22document_template_fingerprint%22%3A%22invalid%22%7D%5D&envelope_parties=%5B%7B%22party_name%22%3A%22something%22%2C%22party_email%22%3A%22something%40gmail.com%22%2C%22party_id%22%3A6519080%7D%5D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Wed, 26 May 2021 13:36:44 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "http": 400,
+            "code": 10153,
+            "message": "The template does not exist. Have you used the correct template fingerprint?"
+        }
+  recorded_at: Wed, 26 May 2021 13:36:44 GMT
+recorded_with: VCR 6.0.0

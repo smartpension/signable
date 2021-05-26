@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.signable.co.uk/v1/envelopes/FINGERPRINT123456789/remind
+    uri: https://api.signable.co.uk/v1/contacts/999999999999
     body:
       encoding: UTF-8
-      string: ''
+      string: contact_name=Two&contact_email=two%40gmail.com
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -21,7 +21,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Wed, 26 May 2021 07:41:50 GMT
+      - Wed, 26 May 2021 12:53:33 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -43,8 +43,8 @@ http_interactions:
       string: |-
         {
             "http": 404,
-            "code": 10253,
-            "message": "The envelope does not exist. Have you used the correct envelope fingerprint?"
+            "code": 10053,
+            "message": "The contact does not exist. Have you used the correct contact ID?"
         }
-  recorded_at: Wed, 26 May 2021 07:41:49 GMT
+  recorded_at: Wed, 26 May 2021 12:53:33 GMT
 recorded_with: VCR 6.0.0

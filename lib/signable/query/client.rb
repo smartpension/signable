@@ -29,13 +29,18 @@ module Signable
         Response.new response
       end
 
-      def delete(entry_poind, id)
+      def delete(entry_point, id)
         response = self.class.delete "/#{entry_point}/#{id}"
         Response.new response
       end
 
       def cancel(entry_point, id)
         response = self.class.put "/#{entry_point}/#{id}/cancel"
+        Response.new response
+      end
+
+      def remind(entry_point, id)
+        response = self.class.put "/#{entry_point}/#{id}/remind"
         Response.new response
       end
 

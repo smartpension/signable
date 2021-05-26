@@ -1,0 +1,159 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.signable.co.uk/v1/envelopes/83ed33d1844c54a053233d00e6ab6e33
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 26 May 2021 10:08:47 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "envelope_fingerprint": "83ed33d1844c54a053233d00e6ab6e33",
+            "envelope_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY",
+            "envelope_status": "sent",
+            "envelope_redirect_url": null,
+            "envelope_created": "2021-05-24T09:55:18+0000",
+            "envelope_sent": "2021-05-24T09:56:56+0000",
+            "envelope_processed": null,
+            "envelope_parties": [
+                {
+                    "party_id": "13792041",
+                    "party_title": "Mr Christian Ball",
+                    "contact_id": "6299647",
+                    "contact_email": "christian.ball@smartpension.co.uk",
+                    "party_status": "in progress",
+                    "party_signature_type": "remote",
+                    "party_role": "signer",
+                    "party_signing_url": "https://sign.signable.app/#/83ed33d1844c54a053233d00e6ab6e33/6df0f3179d612b32aca7b10490b15eec"
+                }
+            ],
+            "envelope_documents": [
+                {
+                    "document_fingerprint": "fa3afc78f6d4ca0b6ccb011237ddede8",
+                    "document_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY",
+                    "document_page_total": "3",
+                    "document_pdf_url": "https://docs.signable.co.uk/original/fa3afc78f6d4ca0b6ccb011237ddede8.pdf",
+                    "document_thumbnails": [
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-0.jpg",
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-1.jpg",
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-2.jpg"
+                    ],
+                    "document_pages": [
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-0.jpg",
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-1.jpg",
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-2.jpg"
+                    ],
+                    "document_fields": [
+                        {
+                            "field_id": "125031184",
+                            "field_title": "Full Company Name",
+                            "field_type": "text",
+                            "field_value": "Christian Smart Pension",
+                            "party_id": "13792041",
+                            "field_merge": "CompanyName"
+                        },
+                        {
+                            "field_id": "125031185",
+                            "field_title": "CompanyCountry",
+                            "field_type": "text",
+                            "field_value": "United Kingdom",
+                            "party_id": "13792041",
+                            "field_merge": "CompanyCountry"
+                        },
+                        {
+                            "field_id": "125031186",
+                            "field_title": "CompanyNumber",
+                            "field_type": "text",
+                            "field_value": "12345",
+                            "party_id": "13792041",
+                            "field_merge": "CompanyNumber"
+                        },
+                        {
+                            "field_id": "125031187",
+                            "field_title": "CompanyAddress",
+                            "field_type": "text",
+                            "field_value": "10 Downing Street\nLondon\nNW43HP",
+                            "party_id": "13792041",
+                            "field_merge": "CompanyAddress"
+                        },
+                        {
+                            "field_id": "125031189",
+                            "field_title": "Company Name",
+                            "field_type": "text",
+                            "field_value": "Christian Smart Pension",
+                            "party_id": "13792041",
+                            "field_merge": "CompanyName"
+                        }
+                    ]
+                }
+            ],
+            "envelope_history": [
+                {
+                    "history_detail": "Envelope generated by Test Signable",
+                    "history_ip": "163.116.162.122",
+                    "history_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "history_date": "2021-05-24T09:55:18+0000"
+                },
+                {
+                    "history_detail": "Document generated with fingerprint fa3afc78f6d4ca0b6ccb011237ddede8",
+                    "history_ip": "163.116.162.122",
+                    "history_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "history_date": "2021-05-24T09:55:24+0000"
+                },
+                {
+                    "history_detail": "Mr Christian Ball has been assigned to this envelope",
+                    "history_ip": "163.116.162.122",
+                    "history_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "history_date": "2021-05-24T09:56:00+0000"
+                },
+                {
+                    "history_detail": "Sent the envelope to Mr Christian Ball (christian.ball@smartpension.co.uk) for signing.",
+                    "history_ip": "163.116.162.122",
+                    "history_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+                    "history_date": "2021-05-24T09:56:56+0000"
+                },
+                {
+                    "history_detail": "Document emailed to christian.ball@smartpension.co.uk",
+                    "history_ip": "18.130.115.252",
+                    "history_user_agent": "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
+                    "history_date": "2021-05-24T09:56:57+0000"
+                }
+            ]
+        }
+  recorded_at: Wed, 26 May 2021 10:08:46 GMT
+recorded_with: VCR 6.0.0
