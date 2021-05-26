@@ -7,9 +7,7 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.ignore_localhost = true
 
-  %w[
-    SIGNABLE_API_KEY
-  ].each do |variable|
-    c.filter_sensitive_data(variable) { ENV.fetch(variable) }
+  c.filter_sensitive_data('Bearer <OAUTH_TOKEN>') do |interaction|
+    interaction.request.headers['Authorization']&.first
   end
 end
