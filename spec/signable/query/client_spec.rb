@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Signable::Query::Client do
+describe Signable::Query::Client, :aggregate_failures do
   include_context 'when signable is configured'
 
   EXISTENT_FINGERPRINT = '83ed33d1844c54a053233d00e6ab6e33'.freeze
