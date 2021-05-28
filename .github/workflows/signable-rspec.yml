@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       api-dir: ./signable
-
-steps:
-  - uses: actions/checkout@v1
-  - uses: actions/setup-ruby@v1
+    steps:
+      - uses: actions/build@v3
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
     with:
       ruby-version: 2.3.0
 
