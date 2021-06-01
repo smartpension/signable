@@ -10,13 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run bundle install
-        working-directory: ${{env.api-dir}}
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
 
       - name: Run bundle exec rspec
-        working-directory: ${{env.api-dir}}
         env:
           RAILS_ENV: test
         run: bundle exec rspec
