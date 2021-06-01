@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
   - name: Run bundle install
     working-directory: ${{env.api-dir}}
     run: |
