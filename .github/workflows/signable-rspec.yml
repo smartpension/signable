@@ -13,8 +13,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
-      - name: Run bundle install
+      - name: Checkout
         uses: actions/checkout@v2
+      - name: Run bundle install
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
