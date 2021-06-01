@@ -8,14 +8,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  - name: Run bundle install
-    working-directory: ${{env.api-dir}}
-    run: |
-      gem install bundler
-      bundle install --jobs 4 --retry 3
+    steps:
+      - name: Run bundle install
+      working-directory: ${{env.api-dir}}
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
 
-  - name: Build and test with rspec
-    working-directory: ${{env.api-dir}}
-    env:
-      RAILS_ENV: test
-    run: bundle exec rspec
+      - name: Build and test with rspec
+      working-directory: ${{env.api-dir}}
+      env:
+        RAILS_ENV: test
+      run: bundle exec rspec
