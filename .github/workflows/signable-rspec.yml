@@ -1,12 +1,9 @@
 name: CI RSpec Tests
 
 on:
-  push:
-    paths:
-    - 'signable/**'
   pull_request:
-    paths:
-    - 'signable/**'
+    branches: [ main ]
+    types: [ opened, synchronize, reopened ]
 
 jobs:
   build:
