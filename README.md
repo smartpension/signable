@@ -62,13 +62,18 @@ envelope.save
 ## Testing
 
 Test suite is RSpec and uses VCR to test API calls.
-Run this command from the root directory to run all tests:
+
+To run the test suite with pre-recorded VCR cassettes, run this command in the root directory:
 
 ```ruby
-SIGNABLE_API_KEY='qwertyuiop' bundle exec rspec
+bundle exec rspec
 ```
 
-If re-recording any VCR cassettes, you will need to specify a valid Signable API key.
+To run the test suite and re-record any VCR cassettes, run this command with a valid Signable API key:
+
+```ruby
+SIGNABLE_API_KEY='valid_signable_api_key' bundle exec rspec
+```
 
 To obtain a valid Signable API key:
 
