@@ -2,7 +2,6 @@ require 'rspec'
 require "signable"
 require "support/vcr"
 require "support/webmock"
-require 'dotenv/load'
 require 'pry'
 
 Dir.glob("#{File.dirname(__FILE__)}/support/**/*.rb").each { |f| require f }

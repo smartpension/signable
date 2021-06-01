@@ -61,13 +61,16 @@ envelope.save
 
 ## Testing
 
-Test suite is RSpec. Run this command from the root directory:
+Test suite is RSpec and uses VCR to test API calls.
+Run this command from the root directory to run all tests:
 
 ```ruby
-SIGNABLE_API_KEY='api_key' bundle exec rspec
+SIGNABLE_API_KEY='qwertyuiop' bundle exec rspec
 ```
 
-To get a useable API key:
+If re-recording any VCR cassettes, you will need to specify a valid Signable API key.
+
+To obtain a valid Signable API key:
 
 1. Retrieve link and credentials for Signable test account from 1Password
 2. Log in and navigate: Signable → Company Profile → Api & Webhooks
