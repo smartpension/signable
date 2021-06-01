@@ -36,7 +36,7 @@ Signable::Template.find 'fingerprint'
 ### Build a document
 
 ```ruby
-Signable::Document.new(template_fingerprint: fingerprint, title: title) 
+Signable::Document.new(template_fingerprint: fingerprint, title: title)
 ```
 
 A document may also contain merge_fields (see signable documentation)
@@ -58,6 +58,21 @@ envelope.parties = parties
 
 envelope.save
 ```
+
+## Testing
+
+Test suite is RSpec. Run this command from the root directory:
+
+```ruby
+SIGNABLE_API_KEY='api_key' bundle exec rspec
+```
+
+To get a useable API key:
+
+1. Retrieve link and credentials for Signable test account from 1Password
+2. Log in and navigate: Signable → Company Profile → Api & Webhooks
+3. Create a new API key
+4. Delete the API key when you are finished with it
 
 ## Contributing
 
