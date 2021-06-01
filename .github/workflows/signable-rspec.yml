@@ -21,5 +21,6 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Run bundle exec rspec
         env:
+          SIGNABLE_API_KEY: SqgWGZAttwLOU6jZCgzaZ4TDnkzedMqR
           RAILS_ENV: test
         run: bundle exec rspec
