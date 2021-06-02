@@ -1,8 +1,350 @@
 ---
 http_interactions:
 - request:
+    method: get
+    uri: https://api.signable.co.uk/v1/templates?limit=3&offset=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 02 Jun 2021 15:28:45 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+            "http": 200,
+            "offset": 1,
+            "limit": 3,
+            "total_templates": "29",
+            "prev": "https://api.signable.co.uk/v1/templates?offset=0&limit=3",
+            "next": "https://api.signable.co.uk/v1/templates?offset=4&limit=3",
+            "templates": [
+                {
+                    "template_id": "16208133",
+                    "template_fingerprint": "0713b744a4f39c46d3d434f195258896",
+                    "template_title": "PARTICIPATION AGREEMENT-TWO-SIGNATORIES",
+                    "template_page_total": "3",
+                    "template_in_progress": "118",
+                    "template_parties_total": "2",
+                    "template_widget_url": "",
+                    "template_widget_embed": "",
+                    "template_pdf_url": "https://docs.signable.co.uk/original/0713b744a4f39c46d3d434f195258896.pdf",
+                    "template_thumbnails": [
+                        "https://docs.signable.co.uk/small/0713b744a4f39c46d3d434f195258896-0.jpg",
+                        "https://docs.signable.co.uk/small/0713b744a4f39c46d3d434f195258896-1.jpg",
+                        "https://docs.signable.co.uk/small/0713b744a4f39c46d3d434f195258896-2.jpg"
+                    ],
+                    "template_pages": [
+                        "https://docs.signable.co.uk/large/0713b744a4f39c46d3d434f195258896-0.jpg",
+                        "https://docs.signable.co.uk/large/0713b744a4f39c46d3d434f195258896-1.jpg",
+                        "https://docs.signable.co.uk/large/0713b744a4f39c46d3d434f195258896-2.jpg"
+                    ],
+                    "template_parties": [
+                        {
+                            "party_id": "6167126",
+                            "party_name": "Signer",
+                            "party_merge_fields": [
+                                {
+                                    "field_id": "116555203",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "116555204",
+                                    "field_merge": "CompanyCountry",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "116555206",
+                                    "field_merge": "CompanyNumber",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "116555207",
+                                    "field_merge": "CompanyAddress",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "116555208",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "116555211",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "party_id": "6167127",
+                            "party_name": "Signer 2"
+                        }
+                    ],
+                    "template_uploaded": "2021-04-06T14:40:22+0000"
+                },
+                {
+                    "template_id": "16086822",
+                    "template_fingerprint": "fa3afc78f6d4ca0b6ccb011237ddede8",
+                    "template_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY",
+                    "template_page_total": "3",
+                    "template_in_progress": "101",
+                    "template_parties_total": "1",
+                    "template_widget_url": "https://app.signable.co.uk/widget/url/yQ6bMP42wy",
+                    "template_widget_embed": "<script type='text/javascript' src='https://app.signable.co.uk/widget/embed/yQ6bMP42wy'></script>",
+                    "template_pdf_url": "https://docs.signable.co.uk/original/fa3afc78f6d4ca0b6ccb011237ddede8.pdf",
+                    "template_thumbnails": [
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-0.jpg",
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-1.jpg",
+                        "https://docs.signable.co.uk/small/fa3afc78f6d4ca0b6ccb011237ddede8-2.jpg"
+                    ],
+                    "template_pages": [
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-0.jpg",
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-1.jpg",
+                        "https://docs.signable.co.uk/large/fa3afc78f6d4ca0b6ccb011237ddede8-2.jpg"
+                    ],
+                    "template_parties": [
+                        {
+                            "party_id": "6123975",
+                            "party_name": "Signer",
+                            "party_merge_fields": [
+                                {
+                                    "field_id": "115503211",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "115503347",
+                                    "field_merge": "CompanyCountry",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "115503323",
+                                    "field_merge": "CompanyNumber",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "115503360",
+                                    "field_merge": "CompanyAddress",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "115505899",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                }
+                            ]
+                        }
+                    ],
+                    "template_uploaded": "2021-03-29T14:26:44+0000"
+                },
+                {
+                    "template_id": "15781046",
+                    "template_fingerprint": "b7c7ff3f0d20876cea7a9b855b1c62f1",
+                    "template_title": "NIAC_PARTICIPATION_AGREEMENT_TWO_SIGNATORIES",
+                    "template_page_total": "11",
+                    "template_in_progress": "12",
+                    "template_parties_total": "2",
+                    "template_widget_url": "",
+                    "template_widget_embed": "",
+                    "template_pdf_url": "https://docs.signable.co.uk/original/b7c7ff3f0d20876cea7a9b855b1c62f1.pdf",
+                    "template_thumbnails": [
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-0.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-1.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-2.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-3.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-4.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-5.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-6.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-7.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-8.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-9.jpg",
+                        "https://docs.signable.co.uk/small/b7c7ff3f0d20876cea7a9b855b1c62f1-10.jpg"
+                    ],
+                    "template_pages": [
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-0.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-1.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-2.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-3.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-4.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-5.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-6.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-7.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-8.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-9.jpg",
+                        "https://docs.signable.co.uk/large/b7c7ff3f0d20876cea7a9b855b1c62f1-10.jpg"
+                    ],
+                    "template_parties": [
+                        {
+                            "party_id": "6010797",
+                            "party_name": "Signer",
+                            "party_merge_fields": [
+                                {
+                                    "field_id": "112927316",
+                                    "field_merge": "AgreementDayOrdinal",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927317",
+                                    "field_merge": "AgreementMonthYear",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927318",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927319",
+                                    "field_merge": "CompanyAddress",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927320",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927323",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927324",
+                                    "field_merge": "FundChoice",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927325",
+                                    "field_merge": "BenefitGroupVestingPeriod",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927326",
+                                    "field_merge": "BenefitGroups",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927327",
+                                    "field_merge": "BenefitGroupsSecondPart",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927328",
+                                    "field_merge": "CompanyChargeConfigurations",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927329",
+                                    "field_merge": "CompanyChargeConfigurationsSecondPartOrEmpty",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927330",
+                                    "field_merge": "Today",
+                                    "field_type": "text"
+                                },
+                                {
+                                    "field_id": "112927333",
+                                    "field_merge": "CompanyName",
+                                    "field_type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "party_id": "6010798",
+                            "party_name": "Signer 2"
+                        }
+                    ],
+                    "template_uploaded": "2021-03-12T08:46:07+0000"
+                }
+            ]
+        }
+  recorded_at: Wed, 02 Jun 2021 15:28:45 GMT
+- request:
+    method: post
+    uri: https://api.signable.co.uk/v1/envelopes
+    body:
+      encoding: UTF-8
+      string: envelope_title=whatever&envelope_documents=%5B%7B%22document_title%22%3A%22title%22%2C%22document_template_fingerprint%22%3A%220713b744a4f39c46d3d434f195258896%22%7D%5D&envelope_parties=%5B%7B%22party_name%22%3A%22something%22%2C%22party_email%22%3A%22something%40gmail.com%22%2C%22party_id%22%3A%226167126%22%7D%5D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Date:
+      - Wed, 02 Jun 2021 15:28:48 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "http": 202,
+            "message": "Your envelope with title whatever will be processed and sent out.",
+            "href": "https://api.signable.co.uk/v1/envelopes/87608ece107c35b7623bf3b637ea75a3",
+            "envelope_title": "whatever",
+            "envelope_fingerprint": "87608ece107c35b7623bf3b637ea75a3",
+            "envelope_signing_embed": "<iframe src=\"https://app.signable.co.uk/envelope/sign/87608ece107c35b7623bf3b637ea75a3/54b2a6d91e41bb2ca9c378e90c02d2e1\" width=\"100%\" height=\"95%\" frameborder=\"0\" style=\"border: 0; overflow: hidden\"></iframe>",
+            "envelope_password_protect": false,
+            "envelope_redirect_url": "",
+            "envelope_queued": "2021-06-02T15:28:45+0000"
+        }
+  recorded_at: Wed, 02 Jun 2021 15:28:48 GMT
+- request:
     method: put
-    uri: https://api.signable.co.uk/v1/envelopes/83ed33d1844c54a053233d00e6ab6e33/remind
+    uri: https://api.signable.co.uk/v1/envelopes/87608ece107c35b7623bf3b637ea75a3/remind
     body:
       encoding: UTF-8
       string: ''
@@ -21,7 +363,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 26 May 2021 10:08:48 GMT
+      - Wed, 02 Jun 2021 15:28:49 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -44,8 +386,8 @@ http_interactions:
         {
             "http": 200,
             "message": "The next signing party for this envelope has been reminded.",
-            "envelope_fingerprint": "83ed33d1844c54a053233d00e6ab6e33",
-            "envelope_title": "PARTICIPATION AGREEMENT-ONE-SIGNATORY"
+            "envelope_fingerprint": "87608ece107c35b7623bf3b637ea75a3",
+            "envelope_title": "whatever"
         }
-  recorded_at: Wed, 26 May 2021 10:08:47 GMT
+  recorded_at: Wed, 02 Jun 2021 15:28:49 GMT
 recorded_with: VCR 6.0.0

@@ -6,27 +6,28 @@ describe Signable::Query::Client, :aggregate_failures do
     config.api_key  = ENV['SIGNABLE_API_KEY']
   end
 
-  EXISTENT_FINGERPRINT = '83ed33d1844c54a053233d00e6ab6e33'.freeze
-
   def client
     described_class.new
   end
 
-  def create_envelope_info(template_fingerprint:, party_id:)
-    template = client.find('templates', template_fingerprint)
-    create_info = double(form_data: {
+  def create_envelope_params(template_fingerprint: nil, party_id: nil)
+    template_info = client.all('templates', 1, 3).http_response['templates'].first
+    template_fingerprint_param = template_fingerprint || template_info['template_fingerprint']
+    party_id_param = party_id || template_info['template_parties'].first['party_id']
+
+    double(form_data: {
       envelope_title: 'whatever',
       envelope_documents: [
         {
           document_title: 'title',
-          document_template_fingerprint: template_fingerprint,
+          document_template_fingerprint: template_fingerprint_param,
         }
       ],
       envelope_parties: [
         {
           party_name: 'something',
           party_email: 'something@gmail.com',
-          party_id: party_id,
+          party_id: party_id_param,
         }
       ]
     })
@@ -34,7 +35,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
   describe '#all' do
     context 'when requesting all envelopes' do
-      it 'gets a response listing all envelopes', vcr: 'client/envelopes/all' do
+      it 'gets a response listing all envelopes', vcr: 'client/envelopes/all/success' do
         response = client.all('envelopes', 1, 3)
 
         expect(response).to be_instance_of(Signable::Query::Response)
@@ -48,12 +49,17 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when requesting an envelope with a specific fingerprint' do
       context 'when envelope with provided fingerprint exists' do
         it 'gets a response containing information for that envelope', vcr: 'client/envelopes/find/success' do
-          response = client.find('envelopes', EXISTENT_FINGERPRINT)
+          create_response = client.create('envelopes', create_envelope_params)
+
+          response = client.find('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(true)
           expect(response.http_response['envelope_fingerprint'])
-            .to eq(EXISTENT_FINGERPRINT)
+            .to eq(create_response.http_response['envelope_fingerprint'])
+
+          client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
+          client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
         end
       end
 
@@ -107,10 +113,7 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when sending request to create an envelope' do
       context 'when existant template and party are provided' do
         it 'returns message confirming the envelope has been created', vcr: 'client/envelopes/create/success' do
-          response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: '4be8d05316eceda98378b052f5586b69', party_id: 6519080)
-          )
+          response = client.create('envelopes', create_envelope_params)
 
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(true)
@@ -125,10 +128,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
       context 'when non-existant template is provided' do
         it 'returns message saying the template not exist', vcr: 'client/envelopes/create/not_found_template' do
-          response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: 'invalid', party_id: 6519080)
-          )
+          response = client.create('envelopes', create_envelope_params(template_fingerprint: 'invalid'))
 
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(false)
@@ -139,10 +139,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
       context 'when non-existant party is provided' do
         it 'returns message saying the party_id is invalid', vcr: 'client/envelopes/create/not_found_party' do
-          response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: '4be8d05316eceda98378b052f5586b69', party_id: 999_999_999_999)
-          )
+          response = client.create('envelopes', create_envelope_params(party_id: 999_999_999_999))
 
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(false)
@@ -158,12 +155,10 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when sending a request to delete an envelope' do
       context 'when envelope with provided fingerprint exists' do
         it 'returns message confirming the envelope has been deleted', vcr: 'client/envelopes/delete/success' do
-          create_response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: '4be8d05316eceda98378b052f5586b69', party_id: 6519080)
-          )
+          create_response = client.create('envelopes', create_envelope_params)
 
           client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
+
           response = client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
@@ -186,10 +181,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
       context 'when envelope has not been cancelled so is still active' do
         it 'returns message saying envelope cannot be deleted because it is active', vcr: 'client/envelopes/delete/not_cancelled' do
-          create_response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: '4be8d05316eceda98378b052f5586b69', party_id: 6519080)
-          )
+          create_response = client.create('envelopes', create_envelope_params)
 
           response = client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
 
@@ -209,10 +201,7 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when sending a request to cancel an envelope' do
       context 'when envelope with provided fingerprint exists' do
         it 'returns message confirming the envelope has been cancelled', vcr: 'client/envelopes/cancel/success' do
-          create_response = client.create(
-            'envelopes',
-            create_envelope_info(template_fingerprint: '4be8d05316eceda98378b052f5586b69', party_id: 6519080)
-          )
+          create_response = client.create('envelopes', create_envelope_params)
 
           response = client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
 
@@ -241,7 +230,9 @@ describe Signable::Query::Client, :aggregate_failures do
   describe '#remind' do
     context 'when envelope with provided fingerprint exists' do
       it 'gets a response confirming the reminder has been sent', vcr: 'client/envelopes/remind/success' do
-        response = client.remind('envelopes', EXISTENT_FINGERPRINT)
+        create_response = client.create('envelopes', create_envelope_params)
+
+        response = client.remind('envelopes', create_response.http_response['envelope_fingerprint'])
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(true)
