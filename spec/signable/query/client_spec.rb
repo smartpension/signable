@@ -1,7 +1,10 @@
 require "spec_helper"
 
 describe Signable::Query::Client, :aggregate_failures do
-  include_context 'when signable is configured'
+  Signable.configure do |config|
+    config.base_url = 'api.signable.co.uk'
+    config.api_key  = ENV['SIGNABLE_API_KEY']
+  end
 
   EXISTENT_FINGERPRINT = '83ed33d1844c54a053233d00e6ab6e33'.freeze
 
