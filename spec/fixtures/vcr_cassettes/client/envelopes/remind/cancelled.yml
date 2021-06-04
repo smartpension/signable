@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 04 Jun 2021 18:13:24 GMT
+      - Fri, 04 Jun 2021 18:13:31 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -290,7 +290,7 @@ http_interactions:
                 }
             ]
         }
-  recorded_at: Fri, 04 Jun 2021 18:13:24 GMT
+  recorded_at: Fri, 04 Jun 2021 18:13:31 GMT
 - request:
     method: post
     uri: https://api.signable.co.uk/v1/envelopes
@@ -312,7 +312,7 @@ http_interactions:
       message: Accepted
     headers:
       Date:
-      - Fri, 04 Jun 2021 18:13:27 GMT
+      - Fri, 04 Jun 2021 18:13:34 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -333,18 +333,18 @@ http_interactions:
         {
             "http": 202,
             "message": "Your envelope with title whatever will be processed and sent out.",
-            "href": "https://api.signable.co.uk/v1/envelopes/5f60add57350e4815b6d23685758a486",
+            "href": "https://api.signable.co.uk/v1/envelopes/55a965cb8ec6998ebfd2420bef35b636",
             "envelope_title": "whatever",
-            "envelope_fingerprint": "5f60add57350e4815b6d23685758a486",
-            "envelope_signing_embed": "<iframe src=\"https://app.signable.co.uk/envelope/sign/5f60add57350e4815b6d23685758a486/7bb954d1399b04f0c587dac5f3c7a23e\" width=\"100%\" height=\"95%\" frameborder=\"0\" style=\"border: 0; overflow: hidden\"></iframe>",
+            "envelope_fingerprint": "55a965cb8ec6998ebfd2420bef35b636",
+            "envelope_signing_embed": "<iframe src=\"https://app.signable.co.uk/envelope/sign/55a965cb8ec6998ebfd2420bef35b636/117872510b2a773bdc2a28c39314929a\" width=\"100%\" height=\"95%\" frameborder=\"0\" style=\"border: 0; overflow: hidden\"></iframe>",
             "envelope_password_protect": false,
             "envelope_redirect_url": "",
-            "envelope_queued": "2021-06-04T18:13:25+0000"
+            "envelope_queued": "2021-06-04T18:13:31+0000"
         }
-  recorded_at: Fri, 04 Jun 2021 18:13:27 GMT
+  recorded_at: Fri, 04 Jun 2021 18:13:34 GMT
 - request:
     method: put
-    uri: https://api.signable.co.uk/v1/envelopes/5f60add57350e4815b6d23685758a486/remind
+    uri: https://api.signable.co.uk/v1/envelopes/55a965cb8ec6998ebfd2420bef35b636/cancel
     body:
       encoding: UTF-8
       string: ''
@@ -363,55 +363,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 04 Jun 2021 18:13:28 GMT
-      Content-Type:
-      - application/json; charset=UTF-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Server:
-      - nginx
-      Vary:
-      - Accept-Encoding
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Methods:
-      - GET,POST,DELETE,PUT,OPTIONS
-      Access-Control-Allow-Headers:
-      - Authorization
-    body:
-      encoding: ASCII-8BIT
-      string: |-
-        {
-            "http": 200,
-            "message": "The next signing party for this envelope has been reminded.",
-            "envelope_fingerprint": "5f60add57350e4815b6d23685758a486",
-            "envelope_title": "whatever"
-        }
-  recorded_at: Fri, 04 Jun 2021 18:13:28 GMT
-- request:
-    method: put
-    uri: https://api.signable.co.uk/v1/envelopes/5f60add57350e4815b6d23685758a486/cancel
-    body:
-      encoding: UTF-8
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Authorization:
-      - Bearer <OAUTH_TOKEN>
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Fri, 04 Jun 2021 18:13:30 GMT
+      - Fri, 04 Jun 2021 18:13:35 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -434,15 +386,60 @@ http_interactions:
         {
             "http": 200,
             "message": "The envelope has been cancelled",
-            "envelope_fingerprint": "5f60add57350e4815b6d23685758a486",
+            "envelope_fingerprint": "55a965cb8ec6998ebfd2420bef35b636",
             "envelope_title": "whatever",
             "envelope_status": "cancelled",
-            "envelope_processed": "2021-06-04T18:13:29+0000"
+            "envelope_processed": "2021-06-04T18:13:34+0000"
         }
-  recorded_at: Fri, 04 Jun 2021 18:13:30 GMT
+  recorded_at: Fri, 04 Jun 2021 18:13:35 GMT
+- request:
+    method: put
+    uri: https://api.signable.co.uk/v1/envelopes/55a965cb8ec6998ebfd2420bef35b636/remind
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer <OAUTH_TOKEN>
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Fri, 04 Jun 2021 18:13:36 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET,POST,DELETE,PUT,OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "http": 400,
+            "code": 10275,
+            "message": "The envelope you are trying to remind doesn't have the correct status. The envelope can't be complete and must still be active."
+        }
+  recorded_at: Fri, 04 Jun 2021 18:13:36 GMT
 - request:
     method: delete
-    uri: https://api.signable.co.uk/v1/envelopes/5f60add57350e4815b6d23685758a486
+    uri: https://api.signable.co.uk/v1/envelopes/55a965cb8ec6998ebfd2420bef35b636
     body:
       encoding: US-ASCII
       string: ''
@@ -461,7 +458,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 04 Jun 2021 18:13:31 GMT
+      - Fri, 04 Jun 2021 18:13:36 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -484,9 +481,9 @@ http_interactions:
         {
             "http": 200,
             "message": "The envelope has been deleted",
-            "envelope_fingerprint": "5f60add57350e4815b6d23685758a486",
+            "envelope_fingerprint": "55a965cb8ec6998ebfd2420bef35b636",
             "envelope_title": "whatever",
             "envelope_status": "deleted"
         }
-  recorded_at: Fri, 04 Jun 2021 18:13:31 GMT
+  recorded_at: Fri, 04 Jun 2021 18:13:36 GMT
 recorded_with: VCR 6.0.0

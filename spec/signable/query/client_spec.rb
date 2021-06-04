@@ -237,6 +237,9 @@ describe Signable::Query::Client, :aggregate_failures do
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(true)
         expect(response.object["message"]).to eq('The next signing party for this envelope has been reminded.')
+
+        client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
+        client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
       end
     end
 
@@ -246,7 +249,27 @@ describe Signable::Query::Client, :aggregate_failures do
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(false)
-        expect(response.object["message"]).to eq('The envelope does not exist. Have you used the correct envelope fingerprint?')
+        expect(response.object["message"]).to eq(
+          'The envelope does not exist. Have you used the correct envelope fingerprint?'
+        )
+      end
+    end
+
+    context 'when envelope with provided fingerprint exists but has been cancelled' do
+      it 'returns message saying envelope does not have correct status', vcr: 'client/envelopes/remind/cancelled' do
+        create_response = client.create('envelopes', create_envelope_params)
+        client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
+
+        response = client.remind('envelopes', create_response.http_response['envelope_fingerprint'])
+
+        expect(response).to be_instance_of(Signable::Query::Response)
+        expect(response.ok?).to eq(false)
+        expect(response.object["message"]).to eq(
+          "The envelope you are trying to remind doesn't have the correct status." +
+          " The envelope can't be complete and must still be active."
+        )
+
+        client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
       end
     end
   end
