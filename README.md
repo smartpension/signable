@@ -83,7 +83,7 @@ Authentication failed. Either the API Key or password was blank.
 
 NOTE:
 * The VCR recordings have an expiry time, so you may be forced to re-record them even if you have made no changes
-* The test suite is destructive so please only use a test Signable account.
+* The test suite is destructive so please only use a test Signable account. The account requires one Template resource in order for the test suite to run.
 
 To obtain a valid Signable API key, log into your Signable account and navigate to Company Settings → Api & Webhooks and click "Add API Key" to generate a key. We recommend you delete the key when finished with it.
 
