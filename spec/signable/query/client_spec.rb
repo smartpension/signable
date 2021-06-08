@@ -11,7 +11,7 @@ describe Signable::Query::Client, :aggregate_failures do
   end
 
   def create_envelope_params(template_fingerprint: nil, party_id: nil)
-    template_info = client.all('templates', 1, 3).http_response['templates'].first
+    template_info = client.all('templates', 0, 10).http_response['templates'].first
     template_fingerprint_param = template_fingerprint || template_info['template_fingerprint']
     party_id_param = party_id || template_info['template_parties'].first['party_id']
 
@@ -36,11 +36,18 @@ describe Signable::Query::Client, :aggregate_failures do
   describe '#all' do
     context 'when requesting all envelopes' do
       it 'gets a response listing all envelopes', vcr: 'client/envelopes/all/success' do
-        response = client.all('envelopes', 1, 3)
+        3.times { client.create('envelopes', create_envelope_params) }
+
+        response = client.all('envelopes', 0, 10)
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(true)
         expect(response.http_response['envelopes'].count).to eq(3)
+
+        response.http_response['envelopes'].each do |envelope|
+          client.cancel('envelopes', envelope['envelope_fingerprint'])
+          client.delete('envelopes', envelope['envelope_fingerprint'])
+        end
       end
     end
   end

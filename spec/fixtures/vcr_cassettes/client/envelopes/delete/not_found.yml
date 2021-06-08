@@ -21,7 +21,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Wed, 02 Jun 2021 15:28:35 GMT
+      - Tue, 08 Jun 2021 13:49:00 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -46,5 +46,5 @@ http_interactions:
             "code": 10253,
             "message": "The envelope does not exist. Have you used the correct envelope fingerprint?"
         }
-  recorded_at: Wed, 02 Jun 2021 15:28:35 GMT
+  recorded_at: Tue, 08 Jun 2021 13:49:00 GMT
 recorded_with: VCR 6.0.0
