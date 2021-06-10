@@ -84,6 +84,10 @@ describe Signable::Query::Client, :aggregate_failures do
   end
 
   describe '#update' do
+    it 'is also implemented in Envelope' do
+      expect(Signable::Envelope.new).to respond_to(:update)
+    end
+
     context 'when sending request to update a contact of a specific ID' do
       context 'when contact with provided ID exists' do
         it 'gets a response containing the updated contact information', vcr: 'client/contacts/update/success' do
@@ -159,6 +163,10 @@ describe Signable::Query::Client, :aggregate_failures do
   end
 
   describe '#delete' do
+    it 'is also implemented in Envelope' do
+      expect(Signable::Envelope.new).to respond_to(:delete)
+    end
+
     context 'when sending a request to delete an envelope' do
       context 'when envelope with provided fingerprint exists' do
         it 'returns message confirming the envelope has been deleted', vcr: 'client/envelopes/delete/success' do
@@ -205,6 +213,10 @@ describe Signable::Query::Client, :aggregate_failures do
   end
 
   describe '#cancel' do
+    it 'is also implemented in Envelope' do
+      expect(Signable::Envelope.new).to respond_to(:cancel)
+    end
+
     context 'when sending a request to cancel an envelope' do
       context 'when envelope with provided fingerprint exists' do
         it 'returns message confirming the envelope has been cancelled', vcr: 'client/envelopes/cancel/success' do
@@ -235,6 +247,10 @@ describe Signable::Query::Client, :aggregate_failures do
   end
 
   describe '#remind' do
+    it 'is also implemented in Envelope' do
+      expect(Signable::Envelope.new).to respond_to(:remind)
+    end
+
     context 'when envelope with provided fingerprint exists' do
       it 'gets a response confirming the reminder has been sent', vcr: 'client/envelopes/remind/success' do
         create_response = client.create('envelopes', create_envelope_params)
