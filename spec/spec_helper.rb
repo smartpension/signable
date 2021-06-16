@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rspec'
-require "signable"
-require "support/vcr"
-require "support/webmock"
+require 'signable'
+require 'support/vcr'
+require 'support/webmock'
 require 'pry'
 
-Dir.glob("#{File.dirname(__FILE__)}/support/**/*.rb").each { |f| require f }
+Dir.glob("#{File.dirname(__FILE__)}/support/**/*.rb").sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.mock_with :rspec

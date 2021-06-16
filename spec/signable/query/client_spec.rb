@@ -1,4 +1,8 @@
-require "spec_helper"
+# frozen_string_literal: true
+
+require 'spec_helper'
+
+DummyResponse = Struct.new(:form_data)
 
 describe Signable::Query::Client, :aggregate_failures do
   Signable.configure do |config|
@@ -10,27 +14,27 @@ describe Signable::Query::Client, :aggregate_failures do
     described_class.new
   end
 
-  def create_envelope_params(template_fingerprint: nil, party_id: nil)
+  def create_envelope_params(template_fingerprint: nil, party_id: nil) # rubocop:disable Metrics/MethodLength
     template_info = client.all('templates', 0, 10).http_response['templates'].first
     template_fingerprint_param = template_fingerprint || template_info['template_fingerprint']
     party_id_param = party_id || template_info['template_parties'].first['party_id']
 
-    double(form_data: {
-      envelope_title: 'whatever',
-      envelope_documents: [
-        {
-          document_title: 'title',
-          document_template_fingerprint: template_fingerprint_param,
-        }
-      ],
-      envelope_parties: [
-        {
-          party_name: 'something',
-          party_email: 'something@gmail.com',
-          party_id: party_id_param,
-        }
-      ]
-    })
+    DummyResponse.new(form_data: {
+                        envelope_title: 'whatever',
+                        envelope_documents: [
+                          {
+                            document_title: 'title',
+                            document_template_fingerprint: template_fingerprint_param
+                          }
+                        ],
+                        envelope_parties: [
+                          {
+                            party_name: 'something',
+                            party_email: 'something@gmail.com',
+                            party_id: party_id_param
+                          }
+                        ]
+                      })
   end
 
   describe '#all' do
@@ -76,7 +80,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(false)
-          expect(response.object["message"])
+          expect(response.object['message'])
             .to eq('The envelope does not exist. Have you used the correct envelope fingerprint?')
         end
       end
@@ -87,11 +91,11 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when sending request to update a contact of a specific ID' do
       context 'when contact with provided ID exists' do
         it 'gets a response containing the updated contact information', vcr: 'client/contacts/update/success' do
-          create_info = double(form_data: {contact_name: 'One', contact_email: 'one@gmail.com'})
+          create_info = DummyResponse.new(form_data: { contact_name: 'One', contact_email: 'one@gmail.com' })
           contact = client.create('contacts', create_info)
           contact_id = contact.http_response['contact_id']
 
-          update_info = double(form_data: {contact_name: 'Two', contact_email: 'two@gmail.com'})
+          update_info = DummyResponse.new(form_data: { contact_name: 'Two', contact_email: 'two@gmail.com' })
           response = client.update('contacts', contact_id, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
@@ -104,8 +108,8 @@ describe Signable::Query::Client, :aggregate_failures do
       end
 
       context 'when contact with provided ID does not exist' do
-        it 'returns message saying the contact does not exist', vcr: 'client/contacts/update/not_found'  do
-          update_info = double(form_data: {contact_name: 'Two', contact_email: 'two@gmail.com'})
+        it 'returns message saying the contact does not exist', vcr: 'client/contacts/update/not_found' do
+          update_info = DummyResponse.new(form_data: { contact_name: 'Two', contact_email: 'two@gmail.com' })
           response = client.update('contacts', 999_999_999_999, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
@@ -187,7 +191,8 @@ describe Signable::Query::Client, :aggregate_failures do
       end
 
       context 'when envelope has not been cancelled so is still active' do
-        it 'returns message saying envelope cannot be deleted because it is active', vcr: 'client/envelopes/delete/not_cancelled' do
+        it 'returns message saying envelope cannot be deleted because it is active',
+           vcr: 'client/envelopes/delete/not_cancelled' do
           create_response = client.create('envelopes', create_envelope_params)
 
           response = client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
@@ -195,7 +200,8 @@ describe Signable::Query::Client, :aggregate_failures do
           expect(response).to be_instance_of(Signable::Query::Response)
           expect(response.ok?).to eq(false)
           expect(response.http_response['message'])
-            .to eq('The envelope you are trying to delete doesn\'t have the correct status. The envelope can\'t still be active.')
+            .to eq('The envelope you are trying to delete doesn\'t have the correct status. ' \
+              'The envelope can\'t still be active.')
 
           client.cancel('envelopes', response.http_response['envelope_fingerprint'])
           client.delete('envelopes', response.http_response['envelope_fingerprint'])
@@ -243,7 +249,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(true)
-        expect(response.object["message"]).to eq('The next signing party for this envelope has been reminded.')
+        expect(response.object['message']).to eq('The next signing party for this envelope has been reminded.')
 
         client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
         client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
@@ -256,7 +262,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(false)
-        expect(response.object["message"]).to eq(
+        expect(response.object['message']).to eq(
           'The envelope does not exist. Have you used the correct envelope fingerprint?'
         )
       end
@@ -271,8 +277,8 @@ describe Signable::Query::Client, :aggregate_failures do
 
         expect(response).to be_instance_of(Signable::Query::Response)
         expect(response.ok?).to eq(false)
-        expect(response.object["message"]).to eq(
-          "The envelope you are trying to remind doesn't have the correct status." +
+        expect(response.object['message']).to eq(
+          "The envelope you are trying to remind doesn't have the correct status." \
           " The envelope can't be complete and must still be active."
         )
 

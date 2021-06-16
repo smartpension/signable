@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   module Concerns
     module Model
@@ -12,9 +14,9 @@ module Signable
 
       def attributes=(attributes = {})
         attributes.each do |key, value|
-          if column = find_column(key)
+          if (column = find_column(key))
             @attributes[column.name] = value
-          elsif embed = find_embed(key)
+          elsif (embed = find_embed(key))
             values = value.map { |hash| embed.embed_class.new(hash) }
             @attributes[embed.name] = values
           end
@@ -27,9 +29,9 @@ module Signable
         @attributes.each do |key, value|
           next if key == :id
 
-          if (column = self.find_column(key))
+          if (column = find_column(key))
             hash[column.name_with_prefix] = value
-          elsif (embed = self.find_embed(key))
+          elsif (embed = find_embed(key))
             hash[embed.name_with_prefix] = value.map(&:form_data)
           end
         end
@@ -40,14 +42,13 @@ module Signable
       def method_missing(method, *args, &block)
         get_method = method.to_s.gsub('=', '')
         object = find_column(get_method) || find_embed(get_method)
-        if object
-          if get_method.to_sym == method
-            @attributes[object.name]
-          else
-            @attributes[object.name] = args.first
-          end
+
+        return super if object.nil?
+
+        if get_method.to_sym == method
+          @attributes[object.name]
         else
-          super
+          @attributes[object.name] = args.first
         end
       end
 
@@ -68,7 +69,6 @@ module Signable
           name.demodulize.underscore
         end
       end
-
     end
   end
 end

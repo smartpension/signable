@@ -1,11 +1,12 @@
-shared_examples 'Column' do
+# frozen_string_literal: true
 
+shared_examples 'Column' do
   before do
     described_class.instance_variable_set(:@columns, [])
   end
 
-  describe "#required_column" do
-    it "return required column only" do
+  describe '#required_column' do
+    it 'return required column only' do
       described_class.column :required, presence: true
       described_class.column :non_required
 
@@ -15,8 +16,8 @@ shared_examples 'Column' do
     end
   end
 
-  describe "#find_column" do
-    it "return first column which match the name" do
+  describe '#find_column' do
+    it 'return first column which match the name' do
       described_class.column :match
       described_class.column :non_match
 
@@ -25,13 +26,13 @@ shared_examples 'Column' do
     end
   end
 
-  describe ".column" do
-    it "add a new column to the list of columns" do
+  describe '.column' do
+    it 'add a new column to the list of columns' do
       described_class.column :foo
       expect(described_class.columns.last.name).to be :foo
     end
 
-    it "automatically add the prefix" do
+    it 'automatically add the prefix' do
       described_class.column :foo
 
       expect(described_class.columns.last.prefix).to be_eql described_class.name.demodulize.underscore

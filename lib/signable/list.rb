@@ -1,20 +1,21 @@
-module Signable
-  class List < Struct.new(:data_type, :hash)
+# frozen_string_literal: true
 
+module Signable
+  List = Struct.new(:data_type, :raw_data) do
     def offset
-      hash['offset']
+      raw_data['offset']
     end
 
     def limit
-      hash['limit']
+      raw_data['limit']
     end
 
     def total
-      hash["total_#{data_name}"]
+      raw_data["total_#{data_name}"]
     end
 
     def data
-      @data ||= hash[data_name].map { |attributes| data_type.new attributes }
+      @data ||= raw_data[data_name].map { |attributes| data_type.new attributes }
     end
 
     private
@@ -22,6 +23,5 @@ module Signable
     def data_name
       data_type.name.demodulize.underscore.pluralize
     end
-
   end
 end

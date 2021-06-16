@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   module Concerns
     module Prefix
@@ -12,13 +14,12 @@ module Signable
       end
 
       def name_without_prefix
-        name.to_s.gsub("#{prefix}_", "")
+        name.to_s.gsub("#{prefix}_", '')
       end
 
       def prefix
         options[:prefix]
       end
-
     end
   end
 end

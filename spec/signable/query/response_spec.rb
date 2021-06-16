@@ -1,34 +1,40 @@
-require "spec_helper"
+# frozen_string_literal: true
 
+require 'spec_helper'
+
+# rubocop:disable RSpec/VerifiedDoubles
 describe Signable::Query::Response do
-
-  describe "#ok?" do
-    let(:response) { Signable::Query::Response.new http_response }
+  describe '#ok?' do
     subject { response.ok? }
 
-    context "when code is 200" do
-      let(:http_response) { double 'http_response', code: 200 }
-      it { should be true }
+    let(:response) { described_class.new http_response }
+
+    context 'when code is 200' do
+      let(:http_response) { double code: 200 }
+
+      it { is_expected.to be true }
     end
 
-    context "when code is 202" do
-      let(:http_response) { double 'http_response', code: 202 }
-      it { should be true }
+    context 'when code is 202' do
+      let(:http_response) { double code: 202 }
+
+      it { is_expected.to be true }
     end
 
-    context "when code is !200" do
-      let(:http_response) { double 'http_response', code: 205 }
-      it { should be false }
+    context 'when code is !200' do
+      let(:http_response) { double code: 205 }
+
+      it { is_expected.to be false }
     end
   end
 
-  describe "#object" do
-    let(:http_response) { double 'http_response', body: { bar: 'foo' }.to_json }
+  describe '#object' do
+    let(:http_response) { double body: { bar: 'foo' }.to_json }
 
-    it "parse body response" do
-      response = Signable::Query::Response.new http_response
+    it 'parse body response' do
+      response = described_class.new http_response
       expect(response.object).to be_eql({ 'bar' => 'foo' })
     end
   end
-
 end
+# rubocop:enable RSpec/VerifiedDoubles

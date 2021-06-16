@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Signable
   class Party
+
     include Signable::Concerns::Model
 
     column :id, presence: true
@@ -10,5 +13,6 @@ module Signable
     column :message
 
     embed :merge_fields
+
   end
 end

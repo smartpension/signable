@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Signable
   module Model
-    class Embed < Struct.new(:name, :options)
+    Embed = Struct.new(:name, :options) do
       include Signable::Concerns::Prefix
 
-    def embed_class
+      def embed_class
         "Signable::#{name.to_s.classify}".constantize
       end
-
     end
   end
 end
