@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.0.8] - 2021-06-18
+## [0.1.0] - 2021-06-18
 
 ### Added
   - rubocop
