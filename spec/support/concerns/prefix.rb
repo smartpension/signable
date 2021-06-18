@@ -18,7 +18,7 @@ shared_examples 'Prefix' do
       it { is_expected.to eq true }
     end
 
-    context 'when name do not match' do
+    context 'when name does not match' do
       let(:name) { 'something' }
 
       it { is_expected.to eq false }

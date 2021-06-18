@@ -12,7 +12,7 @@ shared_examples 'Query' do
     context 'when persisted' do
       let(:described) { described_class.new id: 1 }
 
-      it 'call client update' do
+      it 'calls update on the client' do
         expect(described_class.client).to receive(:update).with(described_class.entry_point, 1,
                                                                 described).and_return response
         described.save
@@ -22,7 +22,7 @@ shared_examples 'Query' do
     context 'when not persisted' do
       let(:described) { described_class.new }
 
-      it 'call client create' do
+      it 'calls create on the client' do
         expect(described_class.client).to receive(:create).with(described_class.entry_point,
                                                                 described).and_return response
         described.save
@@ -33,7 +33,7 @@ shared_examples 'Query' do
   describe '#delete' do
     let(:described) { described_class.new id: 1 }
 
-    it 'call client delete' do
+    it 'calls delete on the client' do
       expect(described_class.client).to receive(:delete).with(described_class.entry_point,
                                                               described.id).and_return response
       described.delete
@@ -59,14 +59,14 @@ shared_examples 'Query' do
   end
 
   describe '.all' do
-    it 'call client all with default value for offset and limit' do
+    it 'calls all on the client with default values for offset and limit' do
       expect(described_class.client).to receive(:all).with(described_class.entry_point, 0, 30).and_return response
       described_class.all
     end
   end
 
   describe '.find' do
-    it 'call client find' do
+    it 'calls find on the client' do
       expect(described_class.client).to receive(:find).with(described_class.entry_point, 1).and_return response
       described_class.find 1
     end

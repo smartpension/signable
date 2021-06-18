@@ -21,7 +21,7 @@ describe Signable::Query::Response do
       it { is_expected.to eq true }
     end
 
-    context 'when code is !200' do
+    context 'when code is not 200' do
       let(:http_response) { double code: 205 }
 
       it { is_expected.to eq false }
