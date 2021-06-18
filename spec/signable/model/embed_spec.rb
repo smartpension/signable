@@ -10,6 +10,6 @@ describe Signable::Model::Embed do
 
     let(:column) { described_class.new('contacts') }
 
-    it { is_expected.to be Signable::Contact }
+    it { is_expected.to eq Signable::Contact }
   end
 end

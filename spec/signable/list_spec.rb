@@ -11,32 +11,32 @@ describe Signable::List do
   describe '#offset' do
     subject { list.offset }
 
-    it { is_expected.to be 5 }
+    it { is_expected.to eq 5 }
   end
 
   describe '#limit' do
     subject { list.limit }
 
-    it { is_expected.to be 12 }
+    it { is_expected.to eq 12 }
   end
 
   describe '#total' do
     subject { list.total }
 
-    it { is_expected.to be 2 }
+    it { is_expected.to eq 2 }
   end
 
   describe '#data' do
     describe 'length' do
       subject { list.data.length }
 
-      it { is_expected.to be 2 }
+      it { is_expected.to eq 2 }
     end
 
     describe 'class name' do
       subject { list.data.first.class.name }
 
-      it { is_expected.to be_eql 'DataType' }
+      it { is_expected.to eq 'DataType' }
     end
   end
 end

@@ -12,19 +12,19 @@ describe Signable::Query::Response do
     context 'when code is 200' do
       let(:http_response) { double code: 200 }
 
-      it { is_expected.to be true }
+      it { is_expected.to eq true }
     end
 
     context 'when code is 202' do
       let(:http_response) { double code: 202 }
 
-      it { is_expected.to be true }
+      it { is_expected.to eq true }
     end
 
     context 'when code is !200' do
       let(:http_response) { double code: 205 }
 
-      it { is_expected.to be false }
+      it { is_expected.to eq false }
     end
   end
 
@@ -33,7 +33,7 @@ describe Signable::Query::Response do
 
     it 'parse body response' do
       response = described_class.new http_response
-      expect(response.object).to be_eql({ 'bar' => 'foo' })
+      expect(response.object).to eq({ 'bar' => 'foo' })
     end
   end
 end
