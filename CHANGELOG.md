@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.8] - 2021-06-18
+
+### Added
+  - rubocop
+  - fixed all the cop violations
+  - github workflow for rubocop
+
 ## [0.0.7] - 2021-06-10
 
 ### Fixed
