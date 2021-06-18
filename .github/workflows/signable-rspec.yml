@@ -9,7 +9,7 @@ jobs:
   run_test_suite:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Ruby
+      - name: Set up Ruby 2.7
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
