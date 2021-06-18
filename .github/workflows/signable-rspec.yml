@@ -20,6 +20,4 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
       - name: Run bundle exec rspec
-        env:
-          RAILS_ENV: test
         run: bundle exec rspec

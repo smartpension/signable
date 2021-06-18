@@ -19,22 +19,24 @@ describe Signable::Query::Client, :aggregate_failures do
     template_fingerprint_param = template_fingerprint || template_info['template_fingerprint']
     party_id_param = party_id || template_info['template_parties'].first['party_id']
 
-    DummyResponse.new(form_data: {
-                        envelope_title: 'whatever',
-                        envelope_documents: [
-                          {
-                            document_title: 'title',
-                            document_template_fingerprint: template_fingerprint_param
-                          }
-                        ],
-                        envelope_parties: [
-                          {
-                            party_name: 'something',
-                            party_email: 'something@gmail.com',
-                            party_id: party_id_param
-                          }
-                        ]
-                      })
+    DummyResponse.new(
+      form_data: {
+        envelope_title: 'whatever',
+        envelope_documents: [
+          {
+            document_title: 'title',
+            document_template_fingerprint: template_fingerprint_param
+          }
+        ],
+        envelope_parties: [
+          {
+            party_name: 'something',
+            party_email: 'something@gmail.com',
+            party_id: party_id_param
+          }
+        ]
+      }
+    )
   end
 
   describe '#all' do
