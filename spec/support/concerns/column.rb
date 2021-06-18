@@ -11,8 +11,8 @@ shared_examples 'Column' do
       described_class.column :non_required
 
       object = described_class.new
-      expect(object.required_column.length).to be 1
-      expect(object.required_column.first.name).to be :required
+      expect(object.required_column.length).to eq 1
+      expect(object.required_column.first.name).to eq :required
     end
   end
 
@@ -22,20 +22,20 @@ shared_examples 'Column' do
       described_class.column :non_match
 
       object = described_class.new
-      expect(object.find_column('match').name).to be :match
+      expect(object.find_column('match').name).to eq :match
     end
   end
 
   describe '.column' do
     it 'add a new column to the list of columns' do
       described_class.column :foo
-      expect(described_class.columns.last.name).to be :foo
+      expect(described_class.columns.last.name).to eq :foo
     end
 
     it 'automatically add the prefix' do
       described_class.column :foo
 
-      expect(described_class.columns.last.prefix).to be_eql described_class.name.demodulize.underscore
+      expect(described_class.columns.last.prefix).to eq described_class.name.demodulize.underscore
     end
   end
 end

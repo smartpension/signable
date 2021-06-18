@@ -18,31 +18,31 @@ shared_examples 'Model' do
     it 'sets attributes specified by column' do
       described_class.column :foo
       object = described_class.new foo: 'bar'
-      expect(object.foo).to be_eql 'bar'
+      expect(object.foo).to eq 'bar'
     end
 
     it 'responds to attributes specified by column' do
       described_class.column :foo
       object = described_class.new foo: 'bar'
-      expect(object.respond_to?(:foo)).to be true
+      expect(object.respond_to?(:foo)).to eq true
     end
 
     it 'sets object specified by embed' do
       described_class.embed :embeddeds
       object = described_class.new embeddeds: ['bar']
-      expect(object.embeddeds.first.arg).to be_eql 'bar'
+      expect(object.embeddeds.first.arg).to eq 'bar'
     end
 
     it 'responds to attributes specified by embed' do
       described_class.embed :embeddeds
       object = described_class.new embeddeds: ['bar']
-      expect(object.respond_to?(:embeddeds)).to be true
+      expect(object.respond_to?(:embeddeds)).to eq true
     end
 
     it 'does not respond to missing attributes' do
       described_class.column :foo
       object = described_class.new foo: 'bar'
-      expect(object.respond_to?(:bar)).to be false
+      expect(object.respond_to?(:bar)).to eq false
     end
   end
 
@@ -56,7 +56,7 @@ shared_examples 'Model' do
         described_class.column :foo
       end
 
-      it { is_expected.to be_eql({ 'base_foo' => 'bar' }) }
+      it { is_expected.to eq({ 'base_foo' => 'bar' }) }
     end
 
     context 'when attribute is an embed' do
@@ -66,7 +66,7 @@ shared_examples 'Model' do
         described_class.embed :embeddeds
       end
 
-      it { is_expected.to be_eql({ 'base_embeddeds' => ['embedded'] }) }
+      it { is_expected.to eq({ 'base_embeddeds' => ['embedded'] }) }
     end
   end
 
@@ -80,19 +80,19 @@ shared_examples 'Model' do
     context 'when all required fields are present' do
       let(:described) { described_class.new required: 'test' }
 
-      it { is_expected.to be true }
+      it { is_expected.to eq true }
     end
 
     context 'when all required fields are not present' do
       let(:described) { described_class.new }
 
-      it { is_expected.to be false }
+      it { is_expected.to eq false }
     end
   end
 
   describe '.prefix' do
     subject { described_class.prefix }
 
-    it { is_expected.to be_eql described_class.name.demodulize.underscore }
+    it { is_expected.to eq described_class.name.demodulize.underscore }
   end
 end
