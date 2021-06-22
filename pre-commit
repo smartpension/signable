@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-# Runs linting over the changes introduced during this commit
-#  - rubocop is the ruby linter
-
-git diff --name-only --cached --diff-filter=ACMRTB | grep -E '.(rake|rb)$' | (grep . || echo config.ru) | xargs bundle exec rubocop --force-exclusion
