@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   module Concerns
     module Column
@@ -20,7 +22,6 @@ module Signable
           @columns ||= []
         end
       end
-
     end
   end
 end

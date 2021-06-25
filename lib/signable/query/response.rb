@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Signable
   module Query
-    class Response < Struct.new(:http_response)
-
+    Response = Struct.new(:http_response) do
       def ok?
         [200, 202].include?(http_response.code.to_i)
       end
@@ -9,7 +10,6 @@ module Signable
       def object
         @object ||= JSON.parse(http_response.body)
       end
-
     end
   end
 end

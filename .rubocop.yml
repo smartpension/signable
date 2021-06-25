@@ -1,0 +1,93 @@
+require:
+  - rubocop-rspec
+AllCops:
+  DisplayCopNames: true
+  StyleGuideCopsOnly: false
+  NewCops: disable
+  MaxFilesInCache: 40000
+Style/Encoding:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+Style/KeywordParametersOrder:
+  Enabled: false
+Style/MissingRespondToMissing:
+  Enabled: false
+Style/FormatStringToken:
+  EnforcedStyle: template
+Style/RegexpLiteral:
+  Description: Use %r for regular expressions matching more than `MaxSlashes` '/'
+    characters. Use %r only for regular expressions matching more than `MaxSlashes`
+    '/' character.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#percent-r
+  Enabled: false
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/**/*
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - class_methods
+Layout/LineLength:
+  Description: Limit lines to 120 characters.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#80-character-limits
+  Enabled: true
+  Max: 120
+  AllowURI: true
+  URISchemes:
+  - http
+  - https
+  Exclude:
+Layout/EmptyLinesAroundClassBody:
+  Description: Keeps track of empty lines around class bodies.
+  Enabled: true
+  EnforcedStyle: empty_lines
+  SupportedStyles:
+  - empty_lines
+  - no_empty_lines
+Metrics/BlockLength:
+  Max: 315
+  Enabled: true
+  Exclude:
+Lint/MissingSuper:
+  Enabled: false
+RSpec:
+  Language:
+    Includes:
+      Examples:
+        - it_behaves_like
+RSpec/NamedSubject:
+  Enabled: false
+Security/YAMLLoad:
+  Exclude:
+    - "spec/**/*.rb"
+Naming/MethodParameterName:
+  MinNameLength: 2
+  AllowedNames:
+    - "_"
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+RSpec/MultipleExpectations:
+  Max: 12
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/VariableName:
+  IgnoredPatterns:
+    - Accept
+    - Authorization
+RSpec/MessageSpies:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/FilePath:
+  SpecSuffixOnly: true
+RSpec/ExpectInHook:
+  Enabled: false
+RSpec/StubbedMock:
+  Enabled: false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   module Concerns
     module Embed
@@ -16,7 +18,6 @@ module Signable
           @embeds ||= []
         end
       end
-
     end
   end
 end

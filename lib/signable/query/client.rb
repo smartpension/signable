@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Signable
   module Query
     class Client
+
       include HTTParty
 
       def initialize
@@ -48,9 +51,7 @@ module Signable
 
       def jsonify(hash)
         hash.each do |key, value|
-          if value.is_a? Array
-            hash[key] = value.to_json
-          end
+          hash[key] = value.to_json if value.is_a? Array
         end
 
         hash

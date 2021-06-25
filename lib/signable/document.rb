@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Signable
   class Document
+
     include Signable::Concerns::Model
 
     column :template_fingerprint, presence: true

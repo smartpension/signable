@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Signable
   class << self
-    attr_accessor :configuration
 
     def configuration
       @configuration ||= Configuration.new
@@ -9,36 +10,37 @@ module Signable
     def configure
       yield(configuration)
     end
+
   end
 end
 
-require "active_support/all"
-require "httparty"
+require 'active_support/all'
+require 'httparty'
 
-require "signable/version"
+require 'signable/version'
 
-require "signable/configuration"
+require 'signable/configuration'
 
-require "signable/concerns/prefix"
-require "signable/model/column"
-require "signable/model/embed"
+require 'signable/concerns/prefix'
+require 'signable/model/column'
+require 'signable/model/embed'
 
-require "signable/list"
+require 'signable/list'
 
-require "signable/concerns/query"
-require "signable/concerns/embed"
-require "signable/concerns/column"
-require "signable/concerns/model"
-require "signable/base"
+require 'signable/concerns/query'
+require 'signable/concerns/embed'
+require 'signable/concerns/column'
+require 'signable/concerns/model'
+require 'signable/base'
 
-require "signable/query/response"
-require "signable/query/client"
+require 'signable/query/response'
+require 'signable/query/client'
 
-require "signable/contact"
-require "signable/envelope"
-require "signable/template"
-require "signable/party"
-require "signable/with_file/party"
-require "signable/merge_field"
-require "signable/document"
-require "signable/with_file/document"
+require 'signable/contact'
+require 'signable/envelope'
+require 'signable/template'
+require 'signable/party'
+require 'signable/with_file/party'
+require 'signable/merge_field'
+require 'signable/document'
+require 'signable/with_file/document'

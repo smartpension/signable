@@ -1,15 +1,15 @@
-require "spec_helper"
+# frozen_string_literal: true
+
+require 'spec_helper'
 
 describe Signable::Model::Embed do
-
   it_behaves_like 'Prefix'
 
-  describe "#embed_class" do
-    let(:column) { Signable::Model::Embed.new('contacts') }
-
+  describe '#embed_class' do
     subject { column.embed_class }
 
-    it { should be Signable::Contact }
-  end
+    let(:column) { described_class.new('contacts') }
 
+    it { is_expected.to eq Signable::Contact }
+  end
 end

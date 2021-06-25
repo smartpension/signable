@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   module Concerns
     module Query
@@ -5,6 +7,7 @@ module Signable
 
       def save
         return false unless valid?
+
         persisted? ? update : create
       end
 
@@ -13,7 +16,9 @@ module Signable
       end
 
       def persisted?
-        id.present? rescue false
+        id.present?
+      rescue StandardError
+        false
       end
 
       private
@@ -47,11 +52,7 @@ module Signable
         def find(id)
           response = client.find(entry_point, id)
 
-          if response.ok?
-            self.new response.object
-          else
-            nil
-          end
+          new response.object if response.ok?
         end
 
         def entry_point
@@ -62,7 +63,6 @@ module Signable
           @client ||= Signable::Query::Client.new
         end
       end
-
     end
   end
 end

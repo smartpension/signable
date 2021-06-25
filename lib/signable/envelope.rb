@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Signable
   class Envelope < Signable::Base
 
@@ -10,11 +12,11 @@ module Signable
     embed :parties
 
     def update
-      raise "not available"
+      raise 'not available'
     end
 
     def delete
-      raise "not available"
+      raise 'not available'
     end
 
     def cancel

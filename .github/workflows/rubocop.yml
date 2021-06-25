@@ -1,4 +1,4 @@
-name: Autorun RSpec Tests
+name: RuboCop
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
     types: [ opened, synchronize, reopened ]
 
 jobs:
-  run_test_suite:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Ruby 2.7
@@ -15,9 +15,9 @@ jobs:
           ruby-version: 2.7
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run bundle install
+      - name: Install gems
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-      - name: Run bundle exec rspec
-        run: bundle exec rspec
+      - name: Run RuboCop
+        run: bundle exec rubocop --parallel
