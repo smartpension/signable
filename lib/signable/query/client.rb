@@ -28,7 +28,7 @@ module Signable
       end
 
       def create(entry_point, object)
-        response = self.class.post "/#{entry_point}", body: jsonify(object.form_data)
+        response = self.class.post "/#{entry_point}", body: jsonify(object.form_data).compact
         Response.new response
       end
 
