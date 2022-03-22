@@ -12,6 +12,6 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   config.around(:each, :vcr) do |example|
-    VCR.use_cassette(example.metadata[:vcr], re_record_interval: 1.month) { example.call }
+    VCR.use_cassette(example.metadata[:vcr]) { example.call }
   end
 end

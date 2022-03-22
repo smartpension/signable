@@ -8,6 +8,7 @@ module Signable
     column :status
     column :signed_pdf
     column :redirect_url
+    column :auto_expire_hours
     embed :documents
     embed :parties
 

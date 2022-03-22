@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2022-03-07
+
+### Added
+  - Add the ability to create auto expiring documents.
+  - Small refactoring to fix specs structure
+
 ## [0.1.0] - 2021-06-18
 
 ### Added

@@ -14,14 +14,15 @@ describe Signable::Query::Client, :aggregate_failures do
     described_class.new
   end
 
-  def create_envelope_params(template_fingerprint: nil, party_id: nil) # rubocop:disable Metrics/MethodLength
+  def create_envelope_params(template_fingerprint: nil, party_id: nil, auto_expire_hours: nil) # rubocop:disable Metrics/MethodLength
     template_info = client.all('templates', 0, 10).http_response['templates'].first
     template_fingerprint_param = template_fingerprint || template_info['template_fingerprint']
     party_id_param = party_id || template_info['template_parties'].first['party_id']
 
     DummyResponse.new(
-      form_data: {
+      {
         envelope_title: 'whatever',
+        envelope_auto_expire_hours: auto_expire_hours,
         envelope_documents: [
           {
             document_title: 'title',
@@ -93,11 +94,11 @@ describe Signable::Query::Client, :aggregate_failures do
     context 'when sending request to update a contact of a specific ID' do
       context 'when contact with provided ID exists' do
         it 'gets a response containing the updated contact information', vcr: 'client/contacts/update/success' do
-          create_info = DummyResponse.new(form_data: { contact_name: 'One', contact_email: 'one@gmail.com' })
+          create_info = DummyResponse.new({ contact_name: 'One', contact_email: 'one@gmail.com' })
           contact = client.create('contacts', create_info)
           contact_id = contact.http_response['contact_id']
 
-          update_info = DummyResponse.new(form_data: { contact_name: 'Two', contact_email: 'two@gmail.com' })
+          update_info = DummyResponse.new({ contact_name: 'Two', contact_email: 'two@gmail.com' })
           response = client.update('contacts', contact_id, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
@@ -111,7 +112,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
       context 'when contact with provided ID does not exist' do
         it 'returns message saying the contact does not exist', vcr: 'client/contacts/update/not_found' do
-          update_info = DummyResponse.new(form_data: { contact_name: 'Two', contact_email: 'two@gmail.com' })
+          update_info = DummyResponse.new({ contact_name: 'Two', contact_email: 'two@gmail.com' })
           response = client.update('contacts', 999_999_999_999, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
@@ -125,17 +126,39 @@ describe Signable::Query::Client, :aggregate_failures do
   describe '#create' do
     context 'when sending request to create an envelope' do
       context 'when existant template and party are provided' do
-        it 'returns message confirming the envelope has been created', vcr: 'client/envelopes/create/success' do
-          response = client.create('envelopes', create_envelope_params)
+        subject(:create_envelope) do
+          client.create('envelopes', create_envelope_params(auto_expire_hours: auto_expire_hours))
+        end
 
-          expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(true)
-          expect(response.http_response['envelope_title']).to eq('whatever')
-          expect(response.http_response['message'])
-            .to eq('Your envelope with title whatever will be processed and sent out.')
+        context 'without auto expire hours' do
+          let(:auto_expire_hours) { nil }
 
-          client.cancel('envelopes', response.http_response['envelope_fingerprint'])
-          client.delete('envelopes', response.http_response['envelope_fingerprint'])
+          it 'returns message confirming the envelope has been created', vcr: 'client/envelopes/create/success' do
+            expect(create_envelope).to be_instance_of(Signable::Query::Response)
+            expect(create_envelope.ok?).to eq(true)
+            expect(create_envelope.http_response['envelope_title']).to eq('whatever')
+            expect(create_envelope.http_response['message'])
+              .to eq('Your envelope with title whatever will be processed and sent out.')
+
+            client.cancel('envelopes', create_envelope.http_response['envelope_fingerprint'])
+            client.delete('envelopes', create_envelope.http_response['envelope_fingerprint'])
+          end
+        end
+
+        context 'with auto expire hours' do
+          let(:auto_expire_hours) { 120 }
+
+          it 'returns message confirming the envelope has been created',
+             vcr: 'client/envelopes/create/auto_expire_hours_success' do
+            expect(create_envelope).to be_instance_of(Signable::Query::Response)
+            expect(create_envelope.ok?).to eq(true)
+            expect(create_envelope.http_response['envelope_title']).to eq('whatever')
+            expect(create_envelope.http_response['message'])
+              .to eq('Your envelope with title whatever will be processed and sent out.')
+
+            client.cancel('envelopes', create_envelope.http_response['envelope_fingerprint'])
+            client.delete('envelopes', create_envelope.http_response['envelope_fingerprint'])
+          end
         end
       end
 
