@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-10-22
+
+Bumped dependencies versions (ruby >= 3.0, activesupport >= 7.0)
+
 ## [0.2.0] - 2022-03-07
 
 ### Added
