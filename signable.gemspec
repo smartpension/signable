@@ -19,17 +19,17 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.7'
+  spec.required_ruby_version = '>= 3.1.0'
 
-  spec.add_development_dependency 'bundler', '~> 2.1'
-  spec.add_development_dependency 'pry', '~> 0.12.2'
-  spec.add_development_dependency 'rake', '~> 12.3.3'
-  spec.add_development_dependency 'rspec', '~> 3.9'
-  spec.add_development_dependency 'rubocop', '~> 1.7.0'
-  spec.add_development_dependency 'rubocop-rspec', '~> 2.1.0'
+  spec.add_development_dependency 'bundler', '~> 2.5'
+  spec.add_development_dependency 'pry', '~> 0.14.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rspec', '~> 3.13'
+  spec.add_development_dependency 'rubocop', '~> 1.66'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.12'
   spec.add_development_dependency 'vcr', '~> 6.0'
   spec.add_development_dependency 'webmock', '~> 3.8.1'
 
-  spec.add_dependency 'activesupport', '> 4.2'
+  spec.add_dependency 'activesupport', '>= 7.0'
   spec.add_dependency 'httparty', '~> 0.13'
 end
