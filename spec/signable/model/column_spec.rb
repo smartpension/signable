@@ -11,13 +11,13 @@ describe Signable::Model::Column do
     context 'when presence is true' do
       let(:column) { described_class.new('name', presence: true) }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context 'when presence is false' do
       let(:column) { described_class.new('name', presence: false) }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 end

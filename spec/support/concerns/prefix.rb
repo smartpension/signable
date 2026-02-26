@@ -9,19 +9,19 @@ shared_examples 'Prefix' do
     context 'when name match name with prefix' do
       let(:name) { 'prefix_test' }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context 'when name match name without prefix' do
       let(:name) { 'test' }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context 'when name does not match' do
       let(:name) { 'something' }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 
