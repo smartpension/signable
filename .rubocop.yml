@@ -86,8 +86,10 @@ RSpec/NestedGroups:
   Enabled: false
 RSpec/ExampleLength:
   Enabled: false
-RSpec/FilePath:
-  SpecSuffixOnly: true
+RSpec/SpecFilePathFormat:
+  Enabled: false
+RSpec/SpecFilePathSuffix:
+  Enabled: true
 RSpec/ExpectInHook:
   Enabled: false
 RSpec/StubbedMock:

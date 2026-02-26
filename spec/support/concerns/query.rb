@@ -46,7 +46,7 @@ shared_examples 'Query' do
     let(:described) { described_class.new }
 
     context 'when id is nil' do
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
 
     context 'when id is present' do
@@ -54,7 +54,7 @@ shared_examples 'Query' do
         described.id = 1
       end
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
   end
 

@@ -48,7 +48,7 @@ describe Signable::Query::Client, :aggregate_failures do
         response = client.all('envelopes', 0, 10)
 
         expect(response).to be_instance_of(Signable::Query::Response)
-        expect(response.ok?).to eq(true)
+        expect(response.ok?).to be(true)
         expect(response.http_response['envelopes'].count).to eq(3)
 
         response.http_response['envelopes'].each do |envelope|
@@ -68,7 +68,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.find('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(true)
+          expect(response.ok?).to be(true)
           expect(response.http_response['envelope_fingerprint'])
             .to eq(create_response.http_response['envelope_fingerprint'])
 
@@ -82,7 +82,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.find('envelopes', 'non_existent_fingerprint')
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.object['message'])
             .to eq('The envelope does not exist. Have you used the correct envelope fingerprint?')
         end
@@ -102,7 +102,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.update('contacts', contact_id, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(true)
+          expect(response.ok?).to be(true)
           expect(response.http_response['contact_name']).to eq('Two')
           expect(response.http_response['contact_email']).to eq('two@gmail.com')
 
@@ -116,7 +116,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.update('contacts', 999_999_999_999, update_info)
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.object['message']).to eq('The contact does not exist. Have you used the correct contact ID?')
         end
       end
@@ -135,7 +135,7 @@ describe Signable::Query::Client, :aggregate_failures do
 
           it 'returns message confirming the envelope has been created', vcr: 'client/envelopes/create/success' do
             expect(create_envelope).to be_instance_of(Signable::Query::Response)
-            expect(create_envelope.ok?).to eq(true)
+            expect(create_envelope.ok?).to be(true)
             expect(create_envelope.http_response['envelope_title']).to eq('whatever')
             expect(create_envelope.http_response['message'])
               .to eq('Your envelope with title whatever will be processed and sent out.')
@@ -151,7 +151,7 @@ describe Signable::Query::Client, :aggregate_failures do
           it 'returns message confirming the envelope has been created',
              vcr: 'client/envelopes/create/auto_expire_hours_success' do
             expect(create_envelope).to be_instance_of(Signable::Query::Response)
-            expect(create_envelope.ok?).to eq(true)
+            expect(create_envelope.ok?).to be(true)
             expect(create_envelope.http_response['envelope_title']).to eq('whatever')
             expect(create_envelope.http_response['message'])
               .to eq('Your envelope with title whatever will be processed and sent out.')
@@ -167,7 +167,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.create('envelopes', create_envelope_params(template_fingerprint: 'invalid'))
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.http_response['message'])
             .to eq('The template does not exist. Have you used the correct template fingerprint?')
         end
@@ -178,7 +178,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.create('envelopes', create_envelope_params(party_id: 999_999_999_999))
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.http_response['message']).to eq(
             'The party_id you have provided isn\'t a valid party for the template fingerprint you have provided.'
           )
@@ -198,7 +198,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(true)
+          expect(response.ok?).to be(true)
           expect(response.http_response['message'])
             .to eq('The envelope has been deleted')
         end
@@ -209,7 +209,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.delete('envelopes', 'invalid')
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.http_response['message'])
             .to eq('The envelope does not exist. Have you used the correct envelope fingerprint?')
         end
@@ -223,7 +223,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.delete('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.http_response['message'])
             .to eq('The envelope you are trying to delete doesn\'t have the correct status. ' \
               'The envelope can\'t still be active.')
@@ -244,7 +244,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(true)
+          expect(response.ok?).to be(true)
           expect(response.http_response['message'])
             .to eq('The envelope has been cancelled')
 
@@ -257,7 +257,7 @@ describe Signable::Query::Client, :aggregate_failures do
           response = client.cancel('envelopes', 'invalid')
 
           expect(response).to be_instance_of(Signable::Query::Response)
-          expect(response.ok?).to eq(false)
+          expect(response.ok?).to be(false)
           expect(response.http_response['message'])
             .to eq('The envelope does not exist. Have you used the correct envelope fingerprint?')
         end
@@ -273,7 +273,7 @@ describe Signable::Query::Client, :aggregate_failures do
         response = client.remind('envelopes', create_response.http_response['envelope_fingerprint'])
 
         expect(response).to be_instance_of(Signable::Query::Response)
-        expect(response.ok?).to eq(true)
+        expect(response.ok?).to be(true)
         expect(response.object['message']).to eq('The next signing party for this envelope has been reminded.')
 
         client.cancel('envelopes', create_response.http_response['envelope_fingerprint'])
@@ -286,7 +286,7 @@ describe Signable::Query::Client, :aggregate_failures do
         response = client.remind('envelopes', 'non_existent_fingerprint')
 
         expect(response).to be_instance_of(Signable::Query::Response)
-        expect(response.ok?).to eq(false)
+        expect(response.ok?).to be(false)
         expect(response.object['message']).to eq(
           'The envelope does not exist. Have you used the correct envelope fingerprint?'
         )
@@ -301,7 +301,7 @@ describe Signable::Query::Client, :aggregate_failures do
         response = client.remind('envelopes', create_response.http_response['envelope_fingerprint'])
 
         expect(response).to be_instance_of(Signable::Query::Response)
-        expect(response.ok?).to eq(false)
+        expect(response.ok?).to be(false)
         expect(response.object['message']).to eq(
           "The envelope you are trying to remind doesn't have the correct status." \
           " The envelope can't be complete and must still be active."

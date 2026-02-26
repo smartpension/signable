@@ -24,7 +24,7 @@ shared_examples 'Model' do
     it 'responds to attributes specified by column' do
       described_class.column :foo
       object = described_class.new foo: 'bar'
-      expect(object.respond_to?(:foo)).to eq true
+      expect(object.respond_to?(:foo)).to be true
     end
 
     it 'sets object specified by embed' do
@@ -36,13 +36,13 @@ shared_examples 'Model' do
     it 'responds to attributes specified by embed' do
       described_class.embed :embeddeds
       object = described_class.new embeddeds: ['bar']
-      expect(object.respond_to?(:embeddeds)).to eq true
+      expect(object.respond_to?(:embeddeds)).to be true
     end
 
     it 'does not respond to missing attributes' do
       described_class.column :foo
       object = described_class.new foo: 'bar'
-      expect(object.respond_to?(:bar)).to eq false
+      expect(object.respond_to?(:bar)).to be false
     end
   end
 
@@ -80,13 +80,13 @@ shared_examples 'Model' do
     context 'when all required fields are present' do
       let(:described) { described_class.new required: 'test' }
 
-      it { is_expected.to eq true }
+      it { is_expected.to be true }
     end
 
     context 'when all required fields are not present' do
       let(:described) { described_class.new }
 
-      it { is_expected.to eq false }
+      it { is_expected.to be false }
     end
   end
 
